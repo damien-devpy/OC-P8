@@ -1,3 +1,6 @@
+#Pycharm
+.idea/
+
 # Compliled
 __pycache__/
 *.pytest_cache/
