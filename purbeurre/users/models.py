@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-
     #favorites = models.ManyToManyField(Product, db_table="favorite")
 
     def __str__(self):

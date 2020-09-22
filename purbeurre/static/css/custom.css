@@ -1,0 +1,35 @@
+#mainNav {
+background-color: #C45525;
+}
+
+header.masthead {
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/background.jpg");
+}
+
+#mainNav .navbar-brand {
+    display: block;
+    margin-left: 10vw;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+h1, h2, h3, h4, h5, h6, #mainNav .navbar-nav .nav-item .nav-link, .a_footer {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+hr {
+height: 3px;
+background-color: #DE9440;
+}
+
+.a_footer:hover {
+text-decoration: none;
+color: white
+}
+
+footer {
+background-color: #C45525;
+}
