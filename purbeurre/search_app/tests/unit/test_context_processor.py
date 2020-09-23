@@ -13,7 +13,7 @@ class ContextProcessorTest(TestCase):
         self.context = search_form(requestObject)
 
     def test_search_form_return_a_dict(self):
-        self.assertEqual(type(self.context), dict)
+        self.assertIsInstance(self.context, dict)
 
     def test_search_form_return_contain_correct_keys(self):
         for key_context, key_expect in zip(self.context.keys(),
