@@ -54,7 +54,7 @@
                             <img src="{% static 'assets/img/account.png' %}" width="30px" height="30px" alt="Mon compte">
                             Mon compte
                         </a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'users:logout' %}">
                             <img src="{% static 'assets/img/disconnect.png' %}" width="30px" height="30px" alt="Se déconnecter">
                             Déconnexion
                         </a></li>
