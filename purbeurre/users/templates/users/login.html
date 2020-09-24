@@ -2,16 +2,18 @@
 
 {% block top_section %}
 
- {% if user.is_authenticated %}
-    <p>Vous êtes déjà connecté.
-        <br><a href="{% url 'users:index' %}">Accueil</a> <a href="{% url 'users:account' %}">Mon compte</a>
-    </p>
- {% elif form.errors %}
-    <p>Vos identifiants ne correspondent à aucun utilisateur connus. Veuillez réassayer ou réinitialisez votre mot de passe.</p>
-    {% include "./auth_form.html" %}
- {% else %}
-    {% include "./auth_form.html" %}
- {% endif %}
+{% if user.is_authenticated %}
+<p>Vous êtes déjà connecté.
+    <br><a href="{% url 'users:index' %}">Accueil</a> <a
+            href="{% url 'users:account' %}">Mon compte</a>
+</p>
+{% elif form.errors %}
+<p>Vos identifiants ne correspondent à aucun utilisateur connus. Veuillez
+    réassayer ou réinitialisez votre mot de passe.</p>
+{% include "./includes/auth_form.html" %}
+{% else %}
+{% include "./includes/auth_form.html" %}
+{% endif %}
 
 
 {% endblock %}

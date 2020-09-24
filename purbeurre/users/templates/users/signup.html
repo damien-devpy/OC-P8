@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block top_section %}
+    <div class="container bg-white">
+        <div class="row justify-content-around">
+        <form method="post" novalidate>
+        <h2 class="text-center">S'inscrire</h2>
+        {% csrf_token %}
+        {% for field in form %}
+            {{ field.label_tag }}
+            {% render_field field class="form-control" %}
+            <small class="form-text">
+                {{ field.help_text|safe}}
+            </small>
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    {{ error }}<br>
+                {% endfor %}
+            {% endif %}
+
+        {% endfor %}
+        <br>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary">Inscription</button>
+        </div>
+
+        </form>
+        </div>
+    </div>
+{% endblock %}

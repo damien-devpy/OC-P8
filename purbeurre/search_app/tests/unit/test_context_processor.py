@@ -7,19 +7,15 @@ class ContextProcessorTest(TestCase):
     """Test search_app template context processor displaying a search form in
     base.html.
     """
-    def setUp(self):
-        """Setting up a context object. Passing an object as request."""
-        requestObject = None
-        self.context = search_form(requestObject)
 
-    def test_search_form_return_a_dict(self):
-        self.assertIsInstance(self.context, dict)
+    def test_context_processor_return_expected_data(self):
+        response = self.client.get('/')
+        form_context = response.context.get('search_form')
+        self.assertIsNotNone(form_context)
+        self.assertIsInstance(form_context, SearchForm)
 
-    def test_search_form_return_contain_correct_keys(self):
-        for key_context, key_expect in zip(self.context.keys(),
-                                           ['search_form']):
-            self.assertEqual(key_context, key_expect)
-
-    def test_search_form_return_contain_correct_values(self):
-        for an_object, a_class in zip(self.context.values(), (SearchForm,)):
-            self.assertIsInstance(an_object, a_class)
+    def test_context_processor_return_expected_data2(self):
+        response = self.client.get('/login/')
+        form_context = response.context.get('search_form')
+        self.assertIsNotNone(form_context)
+        self.assertIsInstance(form_context, SearchForm)
