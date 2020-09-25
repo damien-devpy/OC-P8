@@ -1,13 +1,16 @@
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
+
 from .forms import CustomUserCreationForm
 
 
 def index(request):
     return render(request, 'users_app/index.html')
 
+
 def account(request):
     return render(request, 'users_app/account.html')
+
 
 def signup(request):
     if request.method == "POST":

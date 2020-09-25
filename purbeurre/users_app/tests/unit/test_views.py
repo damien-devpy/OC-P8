@@ -1,9 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
-
-from users_app.views import index, signup
 from users_app.forms import CustomUserCreationForm
 from users_app.models import User
+from users_app.views import index, signup
 
 
 class IndexViewTest(TestCase):
@@ -22,6 +21,7 @@ class IndexViewTest(TestCase):
     def test_base_template_contain_csrf_token_for_search_form(self):
         self.assertContains(self.response, 'csrfmiddlewaretoken')
 
+
 class SignUpViewTest(TestCase):
 
     def setUp(self):
@@ -36,14 +36,17 @@ class SignUpViewTest(TestCase):
         self.assertEqual(signup_view.func, signup)
 
     def test_signup_return_expected_form(self):
-        self.assertIsInstance(self.response.context.get('form'), CustomUserCreationForm)
+        self.assertIsInstance(self.response.context.get('form'),
+                              CustomUserCreationForm)
 
     def test_signup_template_contain_two_crsf_token(self):
         # Expect two csrf token
         # One from the search_form in base.html
         # Another one from the signup form
-        csrf_token_count = self.response.getvalue().count(b'csrfmiddlewaretoken')
+        csrf_token_count = self.response.getvalue().count(
+            b'csrfmiddlewaretoken')
         self.assertEqual(csrf_token_count, 2)
+
 
 class SignUpSuccessfully(TestCase):
 
@@ -67,8 +70,3 @@ class SignUpSuccessfully(TestCase):
         response = self.client.get(reverse('users_app:index'))
         user_status = response.context.get('user').is_authenticated
         self.assertTrue(user_status)
-
-
-
-
-
