@@ -4,8 +4,8 @@
 
 {% if user.is_authenticated %}
 <p>Vous êtes déjà connecté.
-    <br><a href="{% url 'users:index' %}">Accueil</a> <a
-            href="{% url 'users:account' %}">Mon compte</a>
+    <br><a href="{% url 'users_app:index' %}">Accueil</a> <a
+            href="{% url 'users_app:account' %}">Mon compte</a>
 </p>
 {% elif form.errors %}
 <p>Vos identifiants ne correspondent à aucun utilisateur connus. Veuillez

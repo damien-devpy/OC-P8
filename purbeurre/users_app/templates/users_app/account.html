@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block masthead %}
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-start justify-content-center">
+            <div class="col-lg-10 align-self-center">
+                {% if user.is_authenticated %}
+                    <h1 class="text-uppercase text-white font-weight-bold text-center">
+                        Ahoy, {{ user }}
+                    </h1>
+                    <hr>
+                {% else %}
+                    Vous n'êtes pas connecté.
+                    <a href="{% url 'users_app:login' %}">Se connecter</a>
+                    <a href="{% url 'users_app:signup' %}">S'inscrire</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock masthead %}

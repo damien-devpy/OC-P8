@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
-    'users.apps.UsersConfig',
+    'users_app.apps.UsersConfig',
     'search_app.apps.SearchAppConfig',
+    'products_app.apps.ProductsConfig'
 ]
 
 MIDDLEWARE = [
@@ -127,4 +128,4 @@ STATICFILES_DIRS = [
 STATIC_URL = '/static/'
 
 # Overriding default user model
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users_app.User'

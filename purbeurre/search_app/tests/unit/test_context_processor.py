@@ -1,5 +1,4 @@
 from django.test import TestCase
-from search_app.context_processors import search_form
 from search_app.forms import SearchForm
 
 

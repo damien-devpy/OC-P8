@@ -29,6 +29,7 @@
 </head>
 <body id="page-top">
 <!-- Masthead-->
+{% block masthead %}
 <header class="masthead">
     <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-center">
@@ -38,50 +39,63 @@
         </div>
     </div>
 </header>
+{% endblock masthead %}
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-    <div class="container-fluid">
-        <a class="navbar-brand js-scroll-trigger" href="{% url 'users:index' %}">
-            <img src="{% static 'assets/img/logo_pur_beurre.png' %}"
-                 widht="60px" height="60px" alt="Bisuit Pur Beurre">
-            Pur Beurre
-        </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button"
-                data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <form method="POST">
-                    {% csrf_token %}
+<div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'users_app:index' %}">
+        <img src="{% static 'assets/img/logo_pur_beurre.png' %}"
+             widht="60px" height="60px" alt="Bisuit Pur Beurre">
+        Pur Beurre
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button"
+            data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <form method="POST" class="mr-3">
+                {% csrf_token %}
 
-                    {% render_field search_form.input_user class="form-control" %}
-                </form>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger"
-                                        href="#services">
-                    <img src="{% static 'assets/img/carrot.png' %}"
-                         width="30px" height="30px" alt="Mes aliments">
-                    Mes aliments
-                </a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger"
-                                        href="#portfolio">
-                    <img src="{% static 'assets/img/account.png' %}"
-                         width="30px" height="30px" alt="Mon compte">
-                    {% if user.is_authenticated %}
-                        {{ user }}<br>
-                    {% endif %}
-                    Mon compte
-                </a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger"
-                                        href="{% url 'users:logout' %}">
-                    <img src="{% static 'assets/img/disconnect.png' %}"
-                         width="30px" height="30px" alt="Se déconnecter">
-                    Déconnexion
-                </a></li>
-            </ul>
-        </div>
+                {% render_field search_form.input_user class="form-control" %}
+            </form>
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link"
+                                    href="#services">
+                <img src="{% static 'assets/img/carrot.png' %}"
+                     width="30px" height="30px" alt="Mes aliments">
+                Mes aliments
+            </a></li>
+            <li class="nav-item">
+
+                <a class="nav-link" href="{% url 'users_app:account' %}">
+                    <img src="{% static 'assets/img/account.png' %}" width="30px" height="30px" alt="Mon compte">
+                {{ user }}
+                </a>
+            </li>
+            <li class="nav-item">
+
+                <a class="nav-link" href="{% url 'users_app:logout' %}">
+                    <img src="{% static 'assets/img/disconnect.png' %}" width="30px" height="30px" alt="Se déconnecter">
+                Déconnexion
+                </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <img src="{% static 'assets/img/account.png' %}" width="30px" height="30px" alt="S'inscrire">
+                <a class="nav-link d-inline p-0" href="{% url 'users_app:signup' %}">
+                S'inscrire
+                </a>
+                /
+                <a class="nav-link d-inline p-0" href="{% url 'users_app:login' %}">
+                Se connecter
+                </a>
+            </li>
+            {% endif %}
+        </ul>
     </div>
+</div>
 </nav>
 <footer class="py-5">
     <div class="container">

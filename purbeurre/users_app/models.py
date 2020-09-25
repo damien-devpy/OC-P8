@@ -1,9 +1,12 @@
+from django.db import models
 from django.contrib.auth.models import AbstractUser
+
+from products_app.models import Product
 
 
 class User(AbstractUser):
     """Custom model of an User."""
-    # favorites = models.ManyToManyField(Product, db_table="favorite")
+    favorites = models.ManyToManyField(Product, db_table="favorite")
 
     def __str__(self):
         # If user has record his first and last name, display it.

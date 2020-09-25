@@ -1,15 +1,15 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
 
-from users.views import index, signup
-from users.forms import CustomUserCreationForm
-from users.models import User
+from users_app.views import index, signup
+from users_app.forms import CustomUserCreationForm
+from users_app.models import User
 
 
 class IndexViewTest(TestCase):
 
     def setUp(self):
-        url = reverse('users:index')
+        url = reverse('users_app:index')
         self.response = self.client.get(url)
 
     def test_index_status_code(self):
@@ -25,7 +25,7 @@ class IndexViewTest(TestCase):
 class SignUpViewTest(TestCase):
 
     def setUp(self):
-        url = reverse('users:signup')
+        url = reverse('users_app:signup')
         self.response = self.client.get(url)
 
     def test_view_status_code(self):
@@ -48,7 +48,7 @@ class SignUpViewTest(TestCase):
 class SignUpSuccessfully(TestCase):
 
     def setUp(self):
-        url = reverse('users:signup')
+        url = reverse('users_app:signup')
         credentials = {'username': 'a_new_user',
                        'password1': 'r4nd0mp4ssw0rd',
                        'password2': 'r4nd0mp4ssw0rd',
@@ -57,14 +57,14 @@ class SignUpSuccessfully(TestCase):
         self.response = self.client.post(url, credentials)
 
     def test_user_has_been_redirect_to_index(self):
-        self.assertRedirects(self.response, reverse('users:index'))
+        self.assertRedirects(self.response, reverse('users_app:index'))
 
     def test_user_has_been_created(self):
         new_user = User.objects.get(username='a_new_user')
         self.assertTrue(new_user)
 
     def test_user_is_authenticated(self):
-        response = self.client.get(reverse('users:index'))
+        response = self.client.get(reverse('users_app:index'))
         user_status = response.context.get('user').is_authenticated
         self.assertTrue(user_status)
 
