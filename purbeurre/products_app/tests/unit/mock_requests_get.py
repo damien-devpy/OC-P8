@@ -5,7 +5,6 @@ class MockRequests:
         pass
 
     def json(self):
-
         results = {
             'products': [{
                 'product_name_fr': 'Prince goût chocolat au blé complet',
@@ -16,3 +15,5 @@ class MockRequests:
 
             }]
         }
+
+        return results

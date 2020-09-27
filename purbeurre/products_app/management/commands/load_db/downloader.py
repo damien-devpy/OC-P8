@@ -1,5 +1,7 @@
-from .configuration import ENDPOINT, TAGS
 from requests import get as requests_get
+
+from .configuration import ENDPOINT, TAGS
+
 
 class Downloader:
     """Manage the OpenFoodFacts API. Download data from the endpoints"""
@@ -14,17 +16,17 @@ class Downloader:
 
         self.products = products
 
-    def get_json_data(self):
+    def get_data(self):
         """Call API and download products. Return JSON data.
 
         Returns:
             json_data (JSON): JSON data from OpenFoodFacts API
 
         """
-        json_data = requests_get(ENDPOINT, params=TAGS)
+        json_data = requests_get(ENDPOINT, params=TAGS).json()
 
         return json_data
 
     @property
     def json(self):
-        return self.get_json_data()
+        return self.get_data()

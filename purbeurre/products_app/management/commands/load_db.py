@@ -21,7 +21,7 @@ class Commande(BaseCommand):
 
         data_sorted_out = Sort(data)
 
-        for product in data_sorted_out:
-            p = Product(**product)
+        for product in data_sorted_out.products:
+            p = Product(**product['informations'])
             p.save()
-            p.add(Category(c).save for c in product.categories)
+            p.add(Category(c).save for c in product['categories'])
