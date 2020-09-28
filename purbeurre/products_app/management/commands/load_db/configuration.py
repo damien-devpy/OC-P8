@@ -3,8 +3,8 @@ ENDPOINT = "https://fr.openfoodfacts.org/cgi/search.pl?"
 TAGS = {
     'action': 'process',
     'sort_by': 'unique_scans_n',
-    'page_size': '',
-    'page': '1',
+    'page_size': '1000',
+    'page': '',
     'json': 'true',
 }
 
@@ -21,7 +21,7 @@ FIELDS_NUTRIMENTS = {
     'energy_kj': 'energy-kj_100g',
     'energy_kcal': 'energy-kcal_100g',
     'lipid': 'fat_100g',
-    'glucid ': 'sugars_100g',
+    'glucid': 'sugars_100g',
     'fiber': 'fiber_100g',
     'protein': 'proteins_100g',
     'salt': 'salt_100g',
@@ -37,7 +37,3 @@ VALUE_REQUIRED = {
     'countries': 'France',
     'countries_lc': 'fr',
 }
-
-PRODUCT_TEMPLATE = {'informations': {},
-                    'categories': [],
-                    }

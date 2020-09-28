@@ -23,4 +23,4 @@ class Product(models.Model):
     protein = models.FloatField(validators=[MinValueValidator(0)])
     salt = models.FloatField(validators=[MinValueValidator(0)])
 
-    category = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category)
