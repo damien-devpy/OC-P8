@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
-from django.db import IntegrityError, DataError
+from django.db import IntegrityError
 from products_app.models import Product, Category
 
 from .load_db.downloader import Downloader
 from .load_db.sort import Sort
-import pdb
+
 
 class Command(BaseCommand):
     help = """Populate product and category tables.
@@ -15,10 +15,13 @@ class Command(BaseCommand):
         parser.add_argument('products', type=int)
 
     def handle(self, *args, **options):
+        if options['products'] < 1000:
+            options['products'] = 1000
+
         page = 1
         product_count = 0
 
-        while True:
+        while product_count < options['products']:
             if product_count == 0:
                 self.stdout.write('Loading database...')
             self.stdout.write('Calling OpenFoodFacts API')
@@ -30,28 +33,28 @@ class Command(BaseCommand):
             self.stdout.write('Downloaded and sorted out 1000 products')
 
             for product in data_sorted_out.products:
+                if all((not (product_count % 100),
+                        product_count > 0)
+                       ):
+                    self.stdout.write(f'{product_count} products registered.')
+
                 if product_count < options['products']:
                     try:
                         p = Product.objects.create(**product['informations'])
-                        product_count += 1
+                    # If a product already exists in database, skip it.
                     except IntegrityError:
                         continue
+                    product_count += 1
 
-                    categories = (Category.objects.update_or_create(name=c)[0]
-                                  for c in product['categories']
-                                  )
+                    # Tying current product to each one of his categories
+                    categories = (Category.objects.get_or_create(name=c)[0]
+                                  for c in product['categories'])
                     p.categories.add(*categories)
-
                 else:
                     break
-
-                if not (product_count % 100):
-                    self.stdout.write(f'{product_count} products registered.')
-
-            if product_count>= options['products']:
-                break
-
             page += 1
 
-        products = Product.objects.all()
-        self.stdout.write(self.style.SUCCESS(f'Successfully saved {product_count} products in database.'))
+        self.stdout.write(
+            f'Successfully saved {product_count} products in database.')
+        self.stdout.write(
+            f'Currently {len(Product.objects.all())} products in database.')

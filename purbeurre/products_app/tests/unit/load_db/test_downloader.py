@@ -4,8 +4,8 @@ from .mock_requests_get import MockRequests
 
 
 def test_create_downloader_that_take_an_int():
-    download = Downloader(42)
-    assert download.products == 42
+    download = Downloader(1)
+    assert download.page == 1
 
 
 def test_downloader_return_expected_data(monkeypatch):

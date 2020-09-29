@@ -16,7 +16,7 @@ def test_sort_take_raw_json_data_and_return_expected_data():
         'energy_kj': 0,
         'energy_kcal': 0,
         'lipid': 4,
-        'glucid ': 0,
+        'glucid': 0,
         'fiber': 0,
         'protein': 0,
         'salt': 0.0275,
@@ -57,7 +57,7 @@ def test_sort_return_unkown_value_for_missing_nutriments_keys():
         'energy_kj': 0,
         'energy_kcal': 0,
         'lipid': 4,
-        'glucid ': 0,
+        'glucid': 0,
         'fiber': 'Valeur inconnue',  # Missing informations for fibers
         'protein': 0,
         'salt': 'Valeur inconnue',  # Missing informations for salt

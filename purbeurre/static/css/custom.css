@@ -26,15 +26,25 @@ h1, h2, h3, h4, h5, h6, #mainNav .navbar-nav .nav-item .nav-link, .a_footer {
 }
 
 hr {
-height: 3px;
-background-color: #DE9440;
+    height: 3px;
+    background-color: #DE9440;
 }
 
 .a_footer:hover {
-text-decoration: none;
-color: white
+    text-decoration: none;
+    color: white
 }
 
 footer {
-background-color: #C45525;
+    background-color: #C45525;
+}
+
+.products {
+    margin-top: 110px;
+}
+
+.pict-products {
+    display: block;
+    width: 80%;
+    height: auto;
 }

@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -15,12 +14,12 @@ class Product(models.Model):
     pict_product = models.CharField(max_length=150)
     pict_nutriments = models.CharField(max_length=150)
     # Nutriments
-    energy_kj = models.IntegerField(validators=[MinValueValidator(0)])
-    energy_kcal = models.IntegerField(validators=[MinValueValidator(0)])
-    lipid = models.FloatField(validators=[MinValueValidator(0)])
-    glucid = models.FloatField(validators=[MinValueValidator(0)])
-    fiber = models.FloatField(validators=[MinValueValidator(0)])
-    protein = models.FloatField(validators=[MinValueValidator(0)])
-    salt = models.FloatField(validators=[MinValueValidator(0)])
+    energy_kj = models.CharField(max_length=50)
+    energy_kcal = models.CharField(max_length=50)
+    lipid = models.CharField(max_length=50)
+    glucid = models.CharField(max_length=50)
+    fiber = models.CharField(max_length=50)
+    protein = models.CharField(max_length=50)
+    salt = models.CharField(max_length=50)
 
     categories = models.ManyToManyField(Category)

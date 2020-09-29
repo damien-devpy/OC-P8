@@ -45,34 +45,41 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'users_app:index' %}">
             <img alt="Bisuit Pur Beurre"
-                 height="60px" src="{% static 'assets/img/logo_pur_beurre.png' %}" widht="60px">
+                 height="60px"
+                 src="{% static 'assets/img/logo_pur_beurre.png' %}"
+                 widht="60px">
             Pur Beurre
         </a>
         <button aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"
+                aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right"
                 data-target="#navbarResponsive" data-toggle="collapse"
                 type="button"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                <form class="mr-3" method="POST">
+                <form action="{% url 'search_app:results' %}" class="mr-3"
+                      method="POST">
                     {% csrf_token %}
 
-                    {% render_field search_form.input_user class="form-control"
-                    %}
+                    {% render_field search_form.input_user class="form-control" %}
                 </form>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link"
                                         href="#services">
                     <img alt="Mes aliments"
-                         height="30px" src="{% static 'assets/img/carrot.png' %}" width="30px">
+                         height="30px"
+                         src="{% static 'assets/img/carrot.png' %}"
+                         width="30px">
                     Mes aliments
                 </a></li>
                 <li class="nav-item">
 
                     <a class="nav-link" href="{% url 'users_app:account' %}">
                         <img alt="Mon compte"
-                             height="30px" src="{% static 'assets/img/account.png' %}" width="30px">
+                             height="30px"
+                             src="{% static 'assets/img/account.png' %}"
+                             width="30px">
                         {{ user }}
                     </a>
                 </li>
@@ -80,14 +87,18 @@
 
                     <a class="nav-link" href="{% url 'users_app:logout' %}">
                         <img alt="Se déconnecter"
-                             height="30px" src="{% static 'assets/img/disconnect.png' %}" width="30px">
+                             height="30px"
+                             src="{% static 'assets/img/disconnect.png' %}"
+                             width="30px">
                         Déconnexion
                     </a>
                 </li>
                 {% else %}
                 <li class="nav-item">
                     <img alt="S'inscrire"
-                         height="30px" src="{% static 'assets/img/account.png' %}" width="30px">
+                         height="30px"
+                         src="{% static 'assets/img/account.png' %}"
+                         width="30px">
                     <a class="nav-link d-inline p-0"
                        href="{% url 'users_app:signup' %}">
                         S'inscrire
@@ -103,6 +114,7 @@
         </div>
     </div>
 </nav>
+{% block content %}{% endblock content%}
 <footer class="py-5">
     <div class="container">
         <div class="row">
