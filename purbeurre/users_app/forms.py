@@ -1,5 +1,6 @@
-from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.core.validators import EmailValidator
+from django import forms
 from .models import User
 
 
@@ -8,13 +9,17 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ('username', 'password1', 'password2', 'email', 'first_name',
-                  'last_name')
+        fields = ('email', 'username', 'password1', 'password2')
         labels = {
-            'username': 'Nom d\'utilisateur',
             'password1': 'Mot de passe',
             'password2': 'Confirmez votre mot de passe',
-            'email': 'Adresse électronique',
-            'first_name': 'Prénom',
-            'last_name': 'Nom de famille',
         }
+
+class CustomAuthenticationForm(AuthenticationForm):
+    """Custom authentication form.
+
+    Turn username field to email field.
+
+    """
+
+    username = forms.EmailField(label="Adresse électronique", validators=[EmailValidator()], widget=forms.TextInput(attrs={'autofocus': True}))

@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'Europe/Paris'
 
@@ -130,3 +130,6 @@ STATIC_URL = '/static/'
 
 # Overriding default user model
 AUTH_USER_MODEL = 'users_app.User'
+
+# Custom authentication backend
+AUTHENTICATION_BACKENDS = ['users_app.custombackend.CustomBackEnd']

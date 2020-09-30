@@ -39,12 +39,22 @@ footer {
     background-color: #C45525;
 }
 
-.products {
-    margin-top: 110px;
+.content-items {
+    background-color: #de9440;
+    padding-top: 150px;
+}
+
+.list-items {
+    border: 10px solid black;
+}
+
+.product {
+    padding: 50px;
 }
 
 .pict-products {
     display: block;
-    width: 80%;
+    width: 150px;
     height: auto;
+    border: 5px solid #345a61;
 }

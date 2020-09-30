@@ -1,26 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'list_items.html' %}
 
-{% block masthead %}{% endblock masthead %}
-{% block content %}
-<div class="container-fluid border products">
-{% if search_result is None %}
-    <h1>Vous n'avez effectué aucune recherche.</h1>
-{% else %}
-    {% for product in search_result %}
-        {% if forloop.counter|add:"2"|divisibleby:"3"%}
-            <div class="container-fluid">
-            <div class="row justify-content-around">
-        {% endif %}
-            <div class="col-m">
-                <img src="{{ product.pict_product}}" class="rounded pict-products">
-                {{ product.name }}
-                {{ product.nutriscore }}
-            </div>
-        {% if forloop.counter|divisibleby:"3"%}
-            </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
-</div>
-{% endblock content %}
+{% block list_items %}
+
+
+
+{% endblock list_items %}

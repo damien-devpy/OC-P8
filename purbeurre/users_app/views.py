@@ -1,4 +1,6 @@
 from django.contrib.auth import login
+from django.contrib.auth.views import LoginView
+from .forms import CustomAuthenticationForm
 from django.shortcuts import render, redirect
 
 from .forms import CustomUserCreationForm
@@ -22,3 +24,7 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'users_app/signup.html', {'form': form})
+
+class CustomLoginView(LoginView):
+    authentication_form = CustomAuthenticationForm
+

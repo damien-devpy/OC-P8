@@ -11,15 +11,15 @@ class ResultsView(View):
 
     def get(self, request, *args, **kwargs):
 
-        products = Product.objects.all().order_by('-nutriscore')[:30]
+        products = Product.objects.all().order_by('-nutriscore')[:60]
         return render(request, 'search_app/results.html',
-                      {'search_result': products})
+                      {'products': products})
 
     def post(self, request, *args, **kwargs):
         products = self._search_input_user(request.POST['input_user'])
 
         return render(request, 'search_app/results.html',
-                      {'search_result': products})
+                      {'products': products})
 
     def _search_input_user(self, input_user):
         """Search for products in database based on user input.
@@ -35,7 +35,7 @@ class ResultsView(View):
         parsed_input = self._parse_input_user(input_user)
 
         products = Product.objects.filter(
-            name__unaccent__icontains=parsed_input).order_by('-nutriscore')
+            name__unaccent__icontains=parsed_input).order_by('-nutriscore')[:60]
 
         return products
 
