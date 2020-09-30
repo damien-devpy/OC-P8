@@ -11,7 +11,7 @@
         {% endif %}
         <div class="col-m align-self-center justify-content-center product">
         <img src="{{ product.pict_product}}" class="rounded pict-products">
-        {{ product.name }}
+            <a href="{% url 'products_app:substitute' product_id=product.id %}">{{ product.name }}</a>
         {{ product.nutriscore }}
         </div>
         {% if forloop.counter|divisibleby:"3" %}

@@ -7,7 +7,6 @@ from products_app.models import Product
 
 class User(AbstractUser):
     """Custom model of an User."""
-
     username_validator = UnicodeUsernameValidator()
 
     # Custom user name field. Making it optionnal.
