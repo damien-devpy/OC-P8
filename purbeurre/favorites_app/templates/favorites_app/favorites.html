@@ -1,0 +1,12 @@
+{% extends 'list_items.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% for favorite in user.favorites.all %}
+        <h1>{{ favorite.name }}</h1>
+    {% endfor %}
+{% else %}
+    <h1>Vous n'êtes pas connecté, vous ne pouvez avoir aucun produit favoris.</h1>
+{% endif %}
+{% endblock %}
+

@@ -67,7 +67,7 @@
                 </form>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link"
-                                        href="#services">
+                                        href="{% url 'favorites_app:favorites' %}">
                     <img alt="Mes aliments"
                          height="30px"
                          src="{% static 'assets/img/carrot.png' %}"

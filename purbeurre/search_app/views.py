@@ -11,7 +11,7 @@ class ResultsView(View):
 
     def get(self, request, *args, **kwargs):
 
-        products = Product.objects.all().order_by('-nutriscore')[:60]
+        products = Product.objects.all().order_by('-nutriscore')[:120]
         return render(request, 'search_app/results.html',
                       {'products': products})
 
@@ -37,7 +37,10 @@ class ResultsView(View):
         products = Product.objects.filter(
             name__unaccent__icontains=parsed_input).order_by('-nutriscore')[:60]
 
-        return products
+        if products.count():
+            return products
+
+        return False
 
     def _parse_input_user(self, input_user):
         """Parse input user.

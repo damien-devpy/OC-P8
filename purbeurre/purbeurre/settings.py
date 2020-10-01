@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'users_app.apps.UsersConfig',
     'search_app.apps.SearchAppConfig',
-    'products_app.apps.ProductsConfig'
+    'products_app.apps.ProductsConfig',
+    'favorites_app.apps.FavoritesAppConfig',
 ]
 
 MIDDLEWARE = [

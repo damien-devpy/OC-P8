@@ -36,4 +36,5 @@ VALUE_REQUIRED = {
     'complete': '1',
     'countries': 'France',
     'countries_lc': 'fr',
+    'categories_lc': 'fr',
 }

@@ -39,11 +39,7 @@ class Command(BaseCommand):
                     self.stdout.write(f'{product_count} products registered.')
 
                 if product_count < options['products']:
-                    try:
-                        p = Product.objects.create(**product['informations'])
-                    # If a product already exists in database, skip it.
-                    except IntegrityError:
-                        continue
+                    p = Product.objects.get_or_create(**product['informations'])[0]
                     product_count += 1
 
                     # Tying current product to each one of his categories
@@ -52,9 +48,9 @@ class Command(BaseCommand):
                     p.categories.add(*categories)
                 else:
                     break
+
             page += 1
 
+
         self.stdout.write(
-            f'Successfully saved {product_count} products in database.')
-        self.stdout.write(
-            f'Currently {len(Product.objects.all())} products in database.')
+            f'Successfully saved {Product.objects.all().count()} products in database.')

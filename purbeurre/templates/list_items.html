@@ -2,28 +2,5 @@
 
 {% block masthead %}{% endblock masthead %}
 {% block content %}
-<div class="container-fluid content-items">
-<div class="container-fluid list-items">
-    {% for product in products %}
-        {% if forloop.counter|add:"2"|divisibleby:"3" %}
-            <div class="container-fluid">
-            <div class="row justify-content-around">
-        {% endif %}
-        <div class="col-m align-self-center justify-content-center product">
-        <img src="{{ product.pict_product}}" class="rounded pict-products">
-            <a href="{% url 'products_app:substitute' product_id=product.id %}">{{ product.name }}</a>
-        {{ product.nutriscore }}
-        </div>
-        {% if forloop.counter|divisibleby:"3" %}
-            </div>
-            </div>
-        {% endif %}
 
-    {% endfor %}
-    {% if not products|length|divisibleby:"3" %}
-        </div>
-        </div>
-    {% endif %}
-</div>
-</div>
 {% endblock content %}
