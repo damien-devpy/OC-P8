@@ -2,6 +2,10 @@
 {% load static %}
 {% load widget_tweaks %}
 
+{% block add_css %}
+<link href="{% static 'css/index.css' %}" rel="stylesheet"/>
+{% endblock add_css %}
+
 {% block top_section %}
 
 {% if title %}
@@ -13,7 +17,6 @@
     Du gras oui, mais de qualité!
 </h1>
 <hr>
-<br>
 <h2 class="text-white font-weight-bold text-center">
     Trouvez un produit de substitution pour ceux que vous consommez tous les
     jours
@@ -43,14 +46,13 @@
     <div class="col"><h4 class="pt-3">De la ratatouille aux croissants</h4></div>
     </div>
     <div class="row justify-content-middle">
-    <div class="col-sm col-lg-5 pt-3 lead">
+    <div class="col-sm col-xl-5 pt-3 pb-4 lead">
     Pur Beurre est l'initiative de deux amoureux de la gastronomie française,
     Colette Tatou et Rémy, que vous avez déjà certainement rencontrés dans
     notre excellent restaurant Ratatouille.
     </div>
     </div>
 
-    <br>
     <div class="row">
         <div class="col-sm">
         <span class="text-secondary font-weight-bold">Colette Tatou</span>
@@ -79,48 +81,19 @@
 </div>
 <hr>
 <div class="container-fluid">
-    <div class="row">
-    <div class="col"><h2 class="text-center p-3">Contactez-nous !</h2></div>
+    <div class="row p-3">
+    <div class="col"><h2 class="text-center">Contactez-nous !</h2></div>
     </div>
-    <div class="row">
-    <div class="col"><h3 class="pt-3">Notre identité</h3></div>
+    <div class="row justify-content-center p-4">
+    <div class="col-sm col-xl-2 text-center">
+    <img src="{% static 'assets/img/phone.png' %}" alt="Contact téléphonique" width="30px" height="auto">
+    00.00.00.00.00
     </div>
-    <div class="row">
-    <div class="col"><h4 class="pt-3">De la ratatouille aux croissants</h4></div>
-    </div>
-    <div class="row justify-content-middle">
-    <div class="col-sm col-lg-5 pt-3 lead">
-    Pur Beurre est l'initiative de deux amoureux de la gastronomie française,
-    Colette Tatou et Rémy, que vous avez déjà certainement rencontrés dans
-    notre excellent restaurant Ratatouille.
+    <div class="col-sm col-xl-2 text-center">
+    <img src="{% static 'assets/img/mail.png' %}" alt="Contact par mail" width="40px" height="auto">
+        <a href="mailto:mail@mail.com">mail@mail.com</a>
     </div>
     </div>
 
-    <br>
-    <div class="row">
-        <div class="col-sm">
-        <span class="text-secondary font-weight-bold">Colette Tatou</span>
-        : "<span class="font-italic">Nous aimons tous manger, surtout en France !
-        Personnellement, une baguette fraîche, du bon fromage de chèvre et un
-        bon vin rouge me suffisent amplement. Comme tout le monde, je fais mes
-        courses au supermarché. Mais petit à petit je me suis rendue compte,
-        surtout lorsque nous avons ouvert le restaurant, que je pouvais
-        remplacer les produits aseptisés que j'avais l'habitude d'acheter par
-        de bons produits du terroir Et souvent pour le même prix !"</span>
-        <img src="{% static 'assets/img/colette-tatou-full.png' %}" class="d-block mx-auto" alt="Colette Tatou" width="200px" height="auto">
-        </div>
-        <div class="col-sm">
-        <span class="text-secondary font-weight-bold">Remy</span>
-        : "<span class="font-italic">Pour ma
-        part je me rendais déjà dans bien des magasins car j'aime beaucoup me
-        balader, surtout dans les caves et les cuisines. Je connaissais par
-        coeur le contenu des boutiques bio (dont je raffole) ainsi que les
-        ingrédients de tous les aliments vendus. Lorsque Colette m'a demandé si
-        elle pouvait remplacer son Nutella matinal par un aliment plus sain, je
-        savais tout de suite où le trouver. L'idée de Pur Beurre était née !"
-        <img src="{% static 'assets/img/ratatouille-portrait.jpg' %}" class="d-block mx-auto" alt="Ratatouille" width="300px" height="auto">
-        </span>
-        </div>
-    </div>
 </div>
 {% endblock content %}

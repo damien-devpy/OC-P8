@@ -37,11 +37,6 @@ h1, h2, h3, h4, h5, h6, #mainNav .navbar-nav .nav-item .nav-link, .a_footer {
     font-size: 10px;
 }
 
-hr {
-    height: 3px;
-    background-color: var(--fudge);
-}
-
 .a_footer:hover {
     text-decoration: none;
     color: white
@@ -69,12 +64,4 @@ footer {
     width: 150px;
     height: auto;
     border: 5px solid #345a61;
-}
-
-.btn-mussel {
-    background-color: var(--mussel-light);
-}
-
-.btn-mussel:hover {
-    background-color: var(--mussel);
 }

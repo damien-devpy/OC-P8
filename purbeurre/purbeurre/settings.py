@@ -25,7 +25,7 @@ SECRET_KEY = environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'testserver', ]
+ALLOWED_HOSTS = ['localhost', 'testserver', '192.168.1.12']
 
 # Application definition
 
