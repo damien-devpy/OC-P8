@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand
-from django.db import IntegrityError
 from products_app.models import Product, Category
 
 from .load_db.downloader import Downloader
@@ -39,7 +38,8 @@ class Command(BaseCommand):
                     self.stdout.write(f'{product_count} products registered.')
 
                 if product_count < options['products']:
-                    p = Product.objects.get_or_create(**product['informations'])[0]
+                    p = \
+                    Product.objects.get_or_create(**product['informations'])[0]
                     product_count += 1
 
                     # Tying current product to each one of his categories
@@ -50,7 +50,6 @@ class Command(BaseCommand):
                     break
 
             page += 1
-
 
         self.stdout.write(
             f'Successfully saved {Product.objects.all().count()} products in database.')

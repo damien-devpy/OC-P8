@@ -1,43 +1,52 @@
 {% extends 'detail_item.html' %}
 
 {% block content %}
-{% if result %}
-    <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-between" style="border: 10px solid black">
-            <div class="col-4" style="border: 10px solid red">
-                <h1>{{ result.product_to_sub.nutriscore }}</h1>
-                {{ result.product_to_sub.id }}<br>
-                <img src="{{ result.product_to_sub.pict_product }}"><br>
-                <a href="https://fr.openfoodfacts.org/produit/{{ result.product_to_sub.barre_code }}">
-                    {{ result.product_to_sub.name }}
-                </a>
-                <br>
-                {% for category in result.product_to_sub.categories %}
-                    {{ category.name }}<br>
-                {% endfor %}
-            </div>
-            <div class="col-4" style="border: 10px solid red">
-                <h1>{{ result.product_substitute.nutriscore }}</h1>
-                {{ result.product_substitute.id }}<br>
-                <img src="{{ result.product_substitute.pict_product }}"><br>
-                <a href="https://fr.openfoodfacts.org/produit/{{ result.product_substitute.barre_code }}">
-                    {{ result.product_substitute.name }}
-                </a>
-                <br>
-                {% for category in result.product_substitute.categories %}
-                    {{ category.name }}<br>
-                {% endfor %}
-            </div>
+{% if result.product_to_sub and result.product_substitute %}
+<div class="container h-100" xmlns="http://www.w3.org/1999/html">
+    <div class="row h-100 align-items-center justify-content-between"
+         style="border: 10px solid black">
+        <div class="col-4" style="border: 10px solid red">
+            <h1>{{ result.product_to_sub.nutriscore }}</h1>
+            {{ result.product_to_sub.id }}<br>
+            <img src="{{ result.product_to_sub.pict_product }}"><br>
+            <a href="https://fr.openfoodfacts.org/produit/{{ result.product_to_sub.barre_code }}">
+                {{ result.product_to_sub.name }}
+            </a>
+            <br>
+            {% for category in result.product_to_sub.categories %}
+            {{ category.name }}<br>
+            {% endfor %}
+        </div>
+        <div class="col-4" style="border: 10px solid red">
+            <h1>{{ result.product_substitute.nutriscore }}</h1>
+            {{ result.product_substitute.id }}<br>
+            <img src="{{ result.product_substitute.pict_product }}"><br>
+            <a href="https://fr.openfoodfacts.org/produit/{{ result.product_substitute.barre_code }}">
+                {{ result.product_substitute.name }}
+            </a>
+            <br>
+            {% for category in result.product_substitute.categories %}
+            {{ category.name }}<br>
+            {% endfor %}
+            <form method="POST" action="{% url 'favorites_app:favorites' %}">
+                {% csrf_token %}
+                <input name="product_substitute" type="hidden" value="{{ result.product_substitute.id }}">
+                <button type="submit">Enregistrer ce produit à mes favoris</button>
+            </form>
         </div>
     </div>
+</div>
+{% elif result.product_to_sub and not result.product_substitute %}
+<h1>Vous avez déjà le meilleur produit</h1>
 {% else %}
-    <div class="container h-100">
-        <div class="row h-100 align-items-center justify-content-center" style="border: 10px solid black">
-            <div class="col-4" style="border: 10px solid red">
-                <h1>Ce produit n'existe pas.</h1>
-            </div>
+<div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center"
+         style="border: 10px solid black">
+        <div class="col-4" style="border: 10px solid red">
+            <h1>Ce produit n'existe pas.</h1>
         </div>
     </div>
+</div>
 {% endif %}
 
 {% endblock content %}

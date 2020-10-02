@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('users_app', '0001_initial'),
     ]
@@ -14,11 +13,14 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='email',
-            field=models.EmailField(max_length=254, unique=True, verbose_name='Adresse électronique'),
+            field=models.EmailField(max_length=254, unique=True,
+                                    verbose_name='Adresse électronique'),
         ),
         migrations.AlterField(
             model_name='user',
             name='username',
-            field=models.CharField(blank=True, max_length=150, validators=[django.contrib.auth.validators.UnicodeUsernameValidator()], verbose_name="Nom d'utilisateur"),
+            field=models.CharField(blank=True, max_length=150, validators=[
+                django.contrib.auth.validators.UnicodeUsernameValidator()],
+                                   verbose_name="Nom d'utilisateur"),
         ),
     ]

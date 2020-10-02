@@ -1,6 +1,7 @@
 from django.contrib.auth.backends import BaseBackend
+
 from .models import User
-import pdb
+
 
 class CustomBackEnd(BaseBackend):
     """Custom Backend authentification.

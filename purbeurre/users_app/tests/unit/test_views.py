@@ -52,7 +52,7 @@ class SignUpSuccessfully(TestCase):
 
     def setUp(self):
         url = reverse('users_app:signup')
-        credentials = {'username': 'a_new_user',
+        credentials = {'email': 'new_user@gmail.com',
                        'password1': 'r4nd0mp4ssw0rd',
                        'password2': 'r4nd0mp4ssw0rd',
                        }
@@ -63,7 +63,7 @@ class SignUpSuccessfully(TestCase):
         self.assertRedirects(self.response, reverse('users_app:index'))
 
     def test_user_has_been_created(self):
-        new_user = User.objects.get(username='a_new_user')
+        new_user = User.objects.get(email='new_user@gmail.com')
         self.assertTrue(new_user)
 
     def test_user_is_authenticated(self):

@@ -1,6 +1,5 @@
-from django.test import TestCase
-from search_app.views import ResultsView
 from pytest import mark
+from search_app.views import ResultsView
 
 input_and_expect_return = [
     ('Compote de pommes.',
@@ -16,6 +15,7 @@ input_and_expect_return = [
      'sauce pesto',
      ),
 ]
+
 
 @mark.parametrize("input, expected", input_and_expect_return)
 def test_parse_method_remove_stop_word_and_special_char(input, expected):

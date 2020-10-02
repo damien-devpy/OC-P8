@@ -2,11 +2,15 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    {% for favorite in user.favorites.all %}
+    {% if user.favorites.all.count %}
+        {% for favorite in user.favorites.all %}
         <h1>{{ favorite.name }}</h1>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <h1>Vous n'avez aucun produits favorites enregistrés.</h1>
+    {% endif %}
 {% else %}
-    <h1>Vous n'êtes pas connecté, vous ne pouvez avoir aucun produit favoris.</h1>
+<h1>Vous n'êtes pas connecté, vous ne pouvez avoir aucun produit favoris.</h1>
 {% endif %}
 {% endblock %}
 
