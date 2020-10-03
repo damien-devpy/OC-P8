@@ -3,11 +3,3 @@ hr {
     background-color: var(--fudge);
     border-radius: 10px;
 }
-
-.btn-mussel {
-    background-color: var(--mussel-light);
-}
-
-.btn-mussel:hover {
-    background-color: var(--mussel);
-}

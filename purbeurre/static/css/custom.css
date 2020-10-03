@@ -9,6 +9,17 @@
 }
 
 body {
+    min-height: 600px;
+}
+.btn-mussel {
+    background-color: var(--mussel-light);
+}
+
+.btn-mussel:hover {
+    background-color: var(--mussel);
+}
+
+body {
     font-family: "Scope One", sans-serif;
 }
 

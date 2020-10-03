@@ -1,0 +1,14 @@
+.auth-form {
+    border: 2px solid var(--rooibos);
+    background-color: var(--cookie);
+    border-radius: 5px;
+}
+
+.a-form {
+color: #212121;
+}
+
+.a-form:hover {
+color: #212121;
+text-decoration: none;
+}

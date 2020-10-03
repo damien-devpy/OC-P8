@@ -1,19 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block add_css %}
+    <link href="{% static 'css/auth_form.css' %}" rel="stylesheet"/>
+{% endblock %}
 
 {% block top_section %}
 
 {% if user.is_authenticated %}
-<p>Vous êtes déjà connecté.
-    <br><a href="{% url 'users_app:index' %}">Accueil</a> <a
-            href="{% url 'users_app:account' %}">Mon compte</a>
-</p>
-{% elif form.errors %}
-<p>Vos identifiants ne correspondent à aucun utilisateur connus. Veuillez
-    réessayer.</p>
-{% include "./includes/auth_form.html" %}
-{% else %}
-{% include "./includes/auth_form.html" %}
-{% endif %}
 
+    <div class="auth-form">
+    <p class="text-center font-weight-bold p-1 m-1">
+        Vous êtes déjà connecté.<br>
+        <button type="button" class="btn btn-mussel m-1"><a href="{% url 'users_app:index' %}" class="a-form">Accueil</a></button>
+        <br>
+        <button type="button" class="btn btn-mussel m-1"><a href="{% url 'users_app:account' %}" class="a-form">Mon compte</a></button>
+    </p>
+    </div>
+
+{% elif form.errors %}
+
+    {% include "./includes/auth_form.html" %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+            <div class="alert alert-warning" role="alert">Vos identifiants ne correspondent à aucun utilisateur connus. Veuillez
+            réessayer.
+            </div>
+        </div>
+    </div>
+
+{% else %}
+
+    {% include "./includes/auth_form.html" %}
+
+{% endif %}
 
 {% endblock %}
