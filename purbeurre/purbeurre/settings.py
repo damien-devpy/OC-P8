@@ -134,3 +134,5 @@ AUTH_USER_MODEL = 'users_app.User'
 
 # Custom authentication backend
 AUTHENTICATION_BACKENDS = ['users_app.custombackend.CustomBackEnd']
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

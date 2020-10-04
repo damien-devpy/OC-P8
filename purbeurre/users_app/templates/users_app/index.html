@@ -6,12 +6,17 @@
 {% endblock add_css %}
 
 {% block top_section %}
-
-{% if title %}
-<h1>{{ title }}.</h1>
-{% elif just_signed_up %}
-<h1>Bienvenue chez Pur Beurre, {{ user }}</h1>
+<div class="d-flex justify-content-center">
+{% if just_signed_up %}
+    <span class="alert alert-success">
+        Bienvenue, {{ user }}
+    </span>
+{% elif messages %}
+    {% for message in messages %}
+        <span class="alert alert-success">{{ message }}</span>
+    {% endfor %}
 {% endif %}
+</div>
 <h1 class="text-uppercase text-white font-weight-bold text-center">
     Du gras oui, mais de qualité!
 </h1>
