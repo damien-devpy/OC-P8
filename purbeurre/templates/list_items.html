@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block add_css %}
+    <link href="{% static 'css/list_items.css' %}" rel="stylesheet"/>
+{% endblock add_css %}
 
 {% block masthead %}{% endblock masthead %}
+
 {% block content %}
+
+{% block add_content %}{% endblock add_content  %}
+
+<div class="container-fluid content-items" style="border: 1px solid black">
+
+    {% for product in result.products %}
+
+        {% if forloop.counter|add:"2"|divisibleby:"3" %}
+        <div class="row justify-content-around align-items-around" style="border: 1px solid blue">
+        {% endif %}
+
+        <div class="col-sm col-lg-3 d-flex flex-column justify-content-center align-items-center" style="border: 1px solid red">
+            <div>
+                <a href="{% block add_link_product %}{% endblock %}">
+                    <img src="{{ product.pict_product }}" class="rounded pict-products">
+                </a>
+            </div>
+
+        </div>
+
+        {% if forloop.counter|divisibleby:"3" %}
+        </div>
+        {% endif %}
+
+    {% endfor %}
+
+</div>
 
 {% endblock content %}

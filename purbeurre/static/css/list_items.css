@@ -1,0 +1,12 @@
+.content-items {
+    background-color: var(--fudge);
+    margin-top: 150px;
+}
+
+.pict-products {
+    margin: auto;
+    display: block;
+    width: 150px;
+    height: auto;
+    border: 5px solid var(--mussel);
+}

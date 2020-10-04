@@ -57,10 +57,7 @@ footer {
     background-color: #C45525;
 }
 
-.content-items {
-    background-color: #de9440;
-    padding-top: 150px;
-}
+
 
 .list-items {
     border: 10px solid black;
@@ -68,11 +65,4 @@ footer {
 
 .product {
     padding: 50px;
-}
-
-.pict-products {
-    display: block;
-    width: 150px;
-    height: auto;
-    border: 5px solid #345a61;
 }

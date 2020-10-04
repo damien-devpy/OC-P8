@@ -9,16 +9,13 @@ from .configuration import STOP_WORDS
 
 class ResultsView(View):
 
-    def get(self, request, *args, **kwargs):
-        products = Product.objects.all().order_by('-nutriscore')[:120]
-        return render(request, 'search_app/results.html',
-                      {'products': products})
-
     def post(self, request, *args, **kwargs):
+        result = {}
         products = self._search_input_user(request.POST['input_user'])
 
+        result.update({'products': products})
         return render(request, 'search_app/results.html',
-                      {'products': products})
+                      {'result': result})
 
     def _search_input_user(self, input_user):
         """Search for products in database based on user input.

@@ -1,17 +1,5 @@
 {% extends 'list_items.html' %}
 
-{% block content %}
-<div class="container h-100">
-    {% if products %}
-    {% for product in products %}
-    <img class="rounded pict-products" src="{{ product.pict_product}}">
-    <a href="{% url 'products_app:substitute' product_id=product.id %}">
-        {{ product.name }}</a>
-    {{ product.nutriscore }}
-</div>
-{% endfor %}
-{% else %}
-<h1>Votre recherche n'a donné aucun résultats.</h1>
-{% endif %}
-</div>
-{% endblock content %}
+{% block add_link_product %}
+    {% url 'products_app:substitute' product_id=product.id %}
+{% endblock %}
