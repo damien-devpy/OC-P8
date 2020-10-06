@@ -1,0 +1,13 @@
+.cover-product {
+    height: 200px;
+    background-size: cover;
+}
+
+.research {
+    color: var(--fudge);
+}
+
+.favorite {
+    widht: 19px;
+    height: 19px;
+}

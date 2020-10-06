@@ -1,5 +1,93 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block add_css %}
+    <link href="{% static 'css/detail_item.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/nutriscore.css' %}" rel="stylesheet"/>
+{% endblock add_css %}
 
 {% block masthead %}{% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+
+{% block cover_product %}
+<div class="container-fluid cover-product" style="background-image: url({% block add_product_cover %}{% endblock %});">
+    <div class="row justify-content-center align-items-end h-100">
+        <div class="col-10 text-center pb-1">
+            <h3>{% block search_product %}"{{ result.input_user }}"{% endblock %}</h3>
+            <hr style="width: 200px;">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-around"">
+        <div class="col-sm col-lg-4" align="center">
+            <div class="pict-product-nutriscore w-auto h-auto d-inline-block">
+            <img src="{{ product.pict_product }}" class="pict-product">
+            <div class="block-nutriscore">
+            {% include './includes/nutriscore.html' %}
+            </div>
+            </div>
+        </div>
+        <div class="col-sm col-lg-4 mt-5 pt-5 mt-lg-0 pt-lg-0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                           Informations nutritionnelles
+                        </th>
+                        <th scope="col">
+                            Pour 100 gr
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            Energie (kj)
+                        </th>
+                        <td>{{ product.energy_kj }}</td>
+                    </tr>
+                        <th scope="row">
+                            Energie (kcal)
+                        </th>
+                        <td>{{ product.energy_kcal }}</td>
+                    </tr>
+                        <th scope="row">
+                            Lipides
+                        </th>
+                        <td>{{ product.lipid }} g</td>
+                    </tr>
+                        <th scope="row">
+                            Glucides
+                        </th>
+                        <td>{{ product.glucid }} g</td>
+                    </tr>
+                        <th scope="row">
+                            Protéines
+                        </th>
+                        <td>{{ product.protein }} g</td>
+                    </tr>
+                        <th scope="row">
+                            Fibres
+                        </th>
+                        <td>{{ product.fiber }} g</td>
+                    </tr>
+                        <th scope="row">
+                            Sel
+                        </th>
+                        <td>{{ product.salt }} g</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row justify-content-center my-3 py-3 p-lg-5 m-lg-5">
+        <div class="col align-self-center" align="center">
+            <button class="btn btn-mussel"><a href="https://fr.openfoodfacts.org/produit/{{ product.barre_code }}">Voir la fiche OpenFoodFacts de ce produit</a></button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

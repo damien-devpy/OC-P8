@@ -10,7 +10,15 @@
 
 body {
     min-height: 600px;
+    font-family: "Scope One", sans-serif;
 }
+
+hr {
+    height: 3px;
+    background-color: var(--fudge);
+    border-radius: 10px;
+}
+
 .btn-mussel {
     background-color: var(--mussel-light);
 }
@@ -19,8 +27,12 @@ body {
     background-color: var(--mussel);
 }
 
-body {
-    font-family: "Scope One", sans-serif;
+a {
+    color: black;
+}
+
+a:hover {
+    color: var(--cookie);
 }
 
 #mainNav {
@@ -56,8 +68,6 @@ h1, h2, h3, h4, h5, h6, #mainNav .navbar-nav .nav-item .nav-link, .a_footer {
 footer {
     background-color: #C45525;
 }
-
-
 
 .list-items {
     border: 10px solid black;

@@ -1,0 +1,11 @@
+{% load static %}
+
+{% for char in "abcde" %}
+    <span class="
+        {% if product.nutriscore == char %}
+            {{char}} {{ product.nutriscore }} nutriscore this-nutriscore
+        {% else %}
+            {{char}} nutriscore-{{char}} nutriscore
+        {% endif %}
+    d-inline-block">{{ char|upper }}</span>
+{% endfor %}

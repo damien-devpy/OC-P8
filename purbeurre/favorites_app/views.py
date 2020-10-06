@@ -10,13 +10,22 @@ class Favorites(View):
     """
 
     def get(self, request):
-        return render(request, 'favorites_app/favorites.html')
+        result = {}
+        if request.user.is_authenticated:
+            result.update(
+                {'products': request.user.favorites.all()}
+            )
+
+        return render(request, 'favorites_app/favorites.html', {'result': result})
 
     def post(self, request):
+        result = {}
         if request.user.is_authenticated:
             product_substitute = request.POST['product_substitute']
             request.user.favorites.add(product_substitute)
+            result.update({'products': request.user.favorites.all()},
+                          )
 
-        return render(request, 'favorites_app/favorites.html')
+        return render(request, 'favorites_app/favorites.html', {'result': result})
 
 

@@ -1,16 +1,23 @@
-{% extends 'list_items.html' %}
+{% extends user.is_authenticated|yesno:"list_items.html,base.html" %}
 
-{% block content %}
 {% if user.is_authenticated %}
-    {% if user.favorites.all.count %}
-        {% for favorite in user.favorites.all %}
-        <h1>{{ favorite.name }}</h1>
-        {% endfor %}
-    {% else %}
-        <h1>Vous n'avez aucun produits favorites enregistrés.</h1>
-    {% endif %}
+
+    {% block search_product %}Mes aliments{% endblock %}
+
+    {% block add_link_product %}
+        {% url 'products_app:product' product_id=product.id %}
+    {% endblock %}
+
 {% else %}
-<h1>Vous n'êtes pas connecté, vous ne pouvez avoir aucun produit favoris.</h1>
-{% endif %}
+{% block top_section %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+            <div class="alert alert-warning text-center" role="alert">Vous n'êtes pas connecté. <br>Vous ne pouvez ni consulter vos aliments favoris, ni en enregisrer d'autres.
+            </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+{% endif %}
 

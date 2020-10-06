@@ -1,12 +1,50 @@
-.content-items {
-    background-color: var(--fudge);
-    margin-top: 150px;
+.cover-product {
+    height: 200px;
 }
 
 .pict-products {
+    position: relative;
+    background-size: cover;
     margin: auto;
     display: block;
     width: 150px;
-    height: auto;
+    height: 200px;
     border: 5px solid var(--mussel);
+    border-radius: 10px;
+}
+
+.product-name {
+    color: var(--fudge);
+}
+
+.nutriscore {
+    position: absolute;
+    top: -10%;
+    left: 95%;
+    border-radius: 12px;
+    padding: 5px;
+    font-family: 'Arial';
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.a {
+    background-color: rgba(0, 130, 63);
+}
+
+.b {
+    background-color: rgba(134, 188, 43);
+}
+
+.c {
+    background-color: rgba(254, 204, 0);
+}
+
+.d {
+    background-color: rgba(239, 130, 0);
+}
+
+.e {
+    background-color: rgba(231, 60, 8);
 }

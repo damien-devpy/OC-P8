@@ -10,8 +10,10 @@ from .configuration import STOP_WORDS
 class ResultsView(View):
 
     def post(self, request, *args, **kwargs):
-        result = {}
-        products = self._search_input_user(request.POST['input_user'])
+        input_user = request.POST['input_user']
+
+        result = {'input_user': input_user}
+        products = self._search_input_user(input_user)
 
         result.update({'products': products})
         return render(request, 'search_app/results.html',
@@ -30,8 +32,7 @@ class ResultsView(View):
 
         parsed_input = self._parse_input_user(input_user)
         products = Product.objects.filter(
-            name__unaccent__icontains=parsed_input).order_by('-nutriscore')[
-                   :60]
+            name__unaccent__icontains=parsed_input).order_by('-nutriscore')
         # If user search match with products
         if products.count():
             return products

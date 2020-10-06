@@ -1,0 +1,21 @@
+.cover-product {
+    height: 200px;
+    background-size: cover;
+}
+
+.pict-product {
+    margin: auto;
+    display: block;
+    border: 5px solid var(--mussel);
+    border-radius: 10px;
+}
+
+.block-nutriscore {
+    position: absolute;
+    top: 105%;
+    left: 29%;
+}
+
+.pict-product-nutriscore {
+    position: relative;
+}

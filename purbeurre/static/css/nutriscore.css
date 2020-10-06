@@ -1,0 +1,43 @@
+.nutriscore {
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    padding: 3px;
+    margin: -0.13em;
+}
+
+.nutriscore-a {
+    border-radius: 10px 0 0 10px;
+}
+
+.nutriscore-e {
+    border-radius: 0 10px 10px 0;
+}
+
+.this-nutriscore {
+    border-radius: 13px ;
+    font-size: 1.3em;
+    font-weight: 1000;
+    margin-left: 0.01em;
+    margin-right: 0.03em;
+}
+
+.a {
+    background-color: rgba(0, 130, 63);
+}
+
+.b {
+    background-color: rgba(134, 188, 43);
+}
+
+.c {
+    background-color: rgba(254, 204, 0);
+}
+
+.d {
+    background-color: rgba(239, 130, 0);
+}
+
+.e {
+    background-color: rgba(231, 60, 8);
+}
