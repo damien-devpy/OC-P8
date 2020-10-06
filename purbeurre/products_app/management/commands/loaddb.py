@@ -38,8 +38,7 @@ class Command(BaseCommand):
                     self.stdout.write(f'{product_count} products registered.')
 
                 if product_count < options['products']:
-                    p = \
-                    Product.objects.get_or_create(**product['informations'])[0]
+                    p = Product.objects.get_or_create(**product['informations'])[0]
                     product_count += 1
 
                     # Tying current product to each one of his categories

@@ -21,7 +21,7 @@ FIELDS_NUTRIMENTS = {
     'energy_kj': 'energy-kj_100g',
     'energy_kcal': 'energy-kcal_100g',
     'lipid': 'fat_100g',
-    'glucid': 'sugars_100g',
+    'glucid': 'carbohydrates_100g',
     'fiber': 'fiber_100g',
     'protein': 'proteins_100g',
     'salt': 'salt_100g',

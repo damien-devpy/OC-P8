@@ -8,12 +8,20 @@
 {% block top_section %}
 <div class="d-flex justify-content-center">
 {% if just_signed_up %}
-    <span class="alert alert-success">
+    <span class="alert alert-success alert-dismissible fade show">
         Bienvenue, {{ user }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+        <span aria-hidden="true">&times;</span>
+        </button>
     </span>
 {% elif messages %}
     {% for message in messages %}
-        <span class="alert alert-success">{{ message }}</span>
+        <span class="alert alert-success alert-dismissible fade show">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </span>
     {% endfor %}
 {% endif %}
 </div>
