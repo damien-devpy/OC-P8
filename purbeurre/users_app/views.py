@@ -1,6 +1,8 @@
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
+from .models import User
+import pdb
 
 def index(request):
     context = {}
@@ -18,7 +20,12 @@ def account(request):
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
+        try:
+            mail_exist = User.objects.get(email=request.POST['email'].lower())
+        except User.DoesNotExist:
+            mail_exist = None
+
+        if form.is_valid() and not mail_exist:
             user = form.save()
             login(request, user)
             request.session['just_signed_up'] = True

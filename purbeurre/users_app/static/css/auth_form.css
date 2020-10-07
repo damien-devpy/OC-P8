@@ -5,10 +5,9 @@
 }
 
 .a-form {
-color: #212121;
+    color: black;
 }
 
 .a-form:hover {
-color: #212121;
-text-decoration: none;
+    color: var(--cookie);
 }

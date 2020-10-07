@@ -8,10 +8,10 @@ class TestLoadDBCommand(TestCase):
         call_command('loaddb', '100')
         how_much_products_loaded = len(Product.objects.all())
 
-        assert how_much_products_loaded == 1000
+        assert 1000 <= how_much_products_loaded <= 2000
 
     def test_that_load_db_load_expected_products(self):
-        call_command('loaddb', '1042')
+        call_command('loaddb', '2000')
         how_much_products_loaded = len(Product.objects.all())
 
-        assert how_much_products_loaded == 1042
+        assert 2000 <= how_much_products_loaded <= 3000

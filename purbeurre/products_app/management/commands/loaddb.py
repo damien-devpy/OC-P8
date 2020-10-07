@@ -20,8 +20,8 @@ class Command(BaseCommand):
         page = 1
         product_count = 0
 
-        while product_count < options['products']:
-            if product_count == 0:
+        while Product.objects.all().count() < options['products']:
+            if Product.objects.all().count() == 0:
                 self.stdout.write('Loading database...')
             self.stdout.write('Calling OpenFoodFacts API')
 
@@ -31,22 +31,27 @@ class Command(BaseCommand):
             data_sorted_out = Sort(data)
             self.stdout.write('Downloaded and sorted out 1000 products')
 
-            for product in data_sorted_out.products:
-                if all((not (product_count % 100),
-                        product_count > 0)
-                       ):
-                    self.stdout.write(f'{product_count} products registered.')
+            Product.objects.bulk_create([
+                Product(**product['informations'])
+                for product in data_sorted_out.products
+            ], ignore_conflicts=True)
 
-                if product_count < options['products']:
-                    p = Product.objects.get_or_create(**product['informations'])[0]
-                    product_count += 1
+            Category.objects.bulk_create([
+                Category(name=category)
+                for product in data_sorted_out.products
+                for category in product['categories']
+            ], ignore_conflicts=True)
 
-                    # Tying current product to each one of his categories
-                    categories = (Category.objects.get_or_create(name=c)[0]
-                                  for c in product['categories'])
-                    p.categories.add(*categories)
-                else:
-                    break
+            registered_products = Product.objects.all()
+
+            ProductCategoryRelationShip = Product.categories.through
+
+            for index, product in enumerate(data_sorted_out.products):
+                ProductCategoryRelationShip.objects.bulk_create([
+                    ProductCategoryRelationShip(product=registered_products[index].id,
+                                                category=category.id)
+                    for category in registered_products[index].categories.all()
+                ], ignore_conflicts=True)
 
             page += 1
 
