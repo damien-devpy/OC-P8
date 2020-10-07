@@ -13,9 +13,10 @@
 .block-nutriscore {
     position: absolute;
     top: 105%;
-    left: 29%;
+    left: 42%;
 }
 
-.pict-product-nutriscore {
-    position: relative;
+.favorite {
+    widht: 19px;
+    height: 19px;
 }

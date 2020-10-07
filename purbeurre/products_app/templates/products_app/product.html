@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block add_css %}
-    <link href="{% static 'css/detail_item.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/product.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/nutriscore.css' %}" rel="stylesheet"/>
 {% endblock add_css %}
 
 {% block masthead %}{% endblock %}
 
 {% block content %}
+<div class="container-fluid min-vh-100 p-0">
 
 {% if product %}
     <div class="container-fluid cover-product" style="background-image: url({{ product.pict_product }});">
@@ -21,15 +22,29 @@
 
     <div class="container-fluid mt-5">
         <div class="row justify-content-around">
-            <div class="col-sm col-lg-4" align="center">
-                <div class="pict-product-nutriscore w-auto h-auto d-inline-block">
+            <div class="col-sm position-relative" align="center" style="border: 1px solid blue;">
                 <img src="{{ product.pict_product }}" class="pict-product">
-                <div class="block-nutriscore">
+                <div class="block-nutriscore" style="border: 1px solid red;">
                 {% include './includes/nutriscore.html' %}
-                </div>
+                {% if product in user.favorites.all %}
+                    <div class="d-flex pt-2">
+                        <input name="product_substitute" type="hidden" value="{{ product.id }}">
+                        <img src="{% static 'assets/img/already_favorite.png' %}" class="favorite align-self-start">
+                        Produit favori <3
+                    </div>
+                {% else %}
+                    <div class="d-flex pt-2">
+                    <form method="POST" action="{% url 'favorites_app:favorites' %}">
+                        {% csrf_token %}
+                        <input name="product_substitute" type="hidden" value="{{ product.id }}">
+                        <input type="image" src="{% static 'assets/img/favorite.png' %}" class="favorite align-self-start">
+                        Enregistrer à mes favoris
+                    </form>
+                    </div>
+                {% endif %}
                 </div>
             </div>
-            <div class="col-sm col-lg-4 mt-5 pt-5 mt-lg-0 pt-lg-0">
+            <div class="col-sm mt-5 pt-5 mt-lg-0 pt-lg-0">
                 <table class="table">
                     <thead>
                         <tr>
@@ -99,4 +114,5 @@
     </div>
 {% endif %}
 
+</div>
 {% endblock %}

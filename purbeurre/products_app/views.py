@@ -1,5 +1,4 @@
 from django.db.models import Count
-from django.forms import model_to_dict
 from django.shortcuts import render, reverse
 from products_app.models import Product
 
@@ -13,7 +12,7 @@ def substitute(request, product_id):
                       {'result': False})
     else:
         result.update({
-            'product_to_sub': model_to_dict(product_to_sub)
+            'product_to_sub': product_to_sub
         })
 
         products_substitute = Product.objects.filter(
@@ -21,7 +20,7 @@ def substitute(request, product_id):
             ).annotate(cat_common=Count('categories')
                        ).order_by('-cat_common', 'nutriscore')
 
-        result.update({'products': [model_to_dict(product_substitute) for product_substitute in products_substitute[:10]]})
+        result.update({'products': products_substitute[:10]})
         return render(request, 'products_app/substitute.html', {'result': result})
 
 def product(request, product_id):

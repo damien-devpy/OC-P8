@@ -17,12 +17,20 @@
 {% endblock %}
 
 {% block add_favorite %}
-<div class="d-flex">
-<form method="POST" action="{% url 'favorites_app:favorites' %}">
-    {% csrf_token %}
-    <input name="product_substitute" type="hidden" value="{{ product.id }}">
-    <input type="image" src="{% static 'assets/img/favorite.png' %}" class="favorite align-self-start">
-    Enregistrer à mes favoris
-</form>
-</div>
+{% if product in user.favorites.all %}
+    <div class="d-flex">
+        <input name="product_substitute" type="hidden" value="{{ product.id }}">
+        <img src="{% static 'assets/img/already_favorite.png' %}" class="favorite align-self-start">
+        Produit favori <3
+    </div>
+{% else %}
+    <div class="d-flex">
+    <form method="POST" action="{% url 'favorites_app:favorites' %}">
+        {% csrf_token %}
+        <input name="product_substitute" type="hidden" value="{{ product.id }}">
+        <input type="image" src="{% static 'assets/img/favorite.png' %}" class="favorite align-self-start">
+        Enregistrer à mes favoris
+    </form>
+    </div>
+{% endif %}
 {% endblock %}
