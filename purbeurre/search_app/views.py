@@ -32,7 +32,7 @@ class ResultsView(View):
 
         parsed_input = self._parse_input_user(input_user)
         products = Product.objects.filter(
-            name__unaccent__icontains=parsed_input).order_by('-nutriscore')
+            name__icontains=parsed_input).order_by('-nutriscore')
         # If user search match with products
         if products.count():
             return products

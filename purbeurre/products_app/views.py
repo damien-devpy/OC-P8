@@ -1,7 +1,7 @@
 from django.db.models import Count
 from django.shortcuts import render, reverse
 from products_app.models import Product
-
+import pdb
 
 def substitute(request, product_id):
     result = {}
@@ -14,7 +14,6 @@ def substitute(request, product_id):
         result.update({
             'product_to_sub': product_to_sub
         })
-
         products_substitute = Product.objects.filter(
             categories__in=product_to_sub.categories.all(), nutriscore__lt=product_to_sub.nutriscore
             ).annotate(cat_common=Count('categories')

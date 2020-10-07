@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from products_app.models import Product, Category
-
+import pdb
 from .load_db.downloader import Downloader
 from .load_db.sort import Sort
 
@@ -43,15 +43,21 @@ class Command(BaseCommand):
             ], ignore_conflicts=True)
 
             registered_products = Product.objects.all()
+            registered_categories = Category.objects.all()
 
             ProductCategoryRelationShip = Product.categories.through
 
             for index, product in enumerate(data_sorted_out.products):
                 ProductCategoryRelationShip.objects.bulk_create([
-                    ProductCategoryRelationShip(product=registered_products[index].id,
-                                                category=category.id)
-                    for category in registered_products[index].categories.all()
+                    ProductCategoryRelationShip(product=registered_products.get(barre_code=product["informations"]["barre_code"]),
+                                                category=registered_categories.get(name=category),)
+                    for category in product['categories']
                 ], ignore_conflicts=True)
+
+                if product["informations"]["name"] == 'Nutella':
+                    self.stdout.write(f'{product["informations"]["name"]}')
+                    self.stdout.write(f'{product["categories"]}')
+                    self.stdout.write(f'{[registered_categories.filter(name__exact=category)[0].name for category in product["categories"]]}')
 
             page += 1
 

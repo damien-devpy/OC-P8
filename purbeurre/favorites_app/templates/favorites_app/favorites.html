@@ -4,9 +4,29 @@
 
     {% block search_product %}Mes aliments{% endblock %}
 
-    {% block add_link_product %}
-        {% url 'products_app:product' product_id=product.id %}
+    {% if user.favorites.all %}
+
+        {% block add_link_product %}
+            {% url 'products_app:product' product_id=product.id %}
+        {% endblock %}
+
+    {% else %}
+    {% block warning_message %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10">
+            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                Vous n'avez enregistré aucun produits.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            </div>
+        </div>
+    </div>
     {% endblock %}
+
+    {% endif %}
 
 {% else %}
 {% block top_section %}

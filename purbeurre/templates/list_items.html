@@ -29,6 +29,9 @@
         <div class="row justify-content-around align-items-around">
         {% endif %}
 
+        {% for category in product.category.all %}
+            {{ category.name }}
+        {% endfor %}
         <div class="col-sm col-lg-3 d-flex flex-column justify-content-center align-items-center mt-4 mb-4">
             <a href="{% block add_link_product %}{% endblock %}">
             <div class="pict-products" style="background-image: url({{ product.pict_product }})">
