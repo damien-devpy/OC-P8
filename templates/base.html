@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    {% load widget_tweaks %}
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+          rel="stylesheet">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
+    <title>Pur Beurre</title>
+    <!-- Favicon-->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon"
+          type="image/x-icon"/>
+    <!-- Font Awesome icons (free version)-->
+    <script crossorigin="anonymous"
+            src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
+    <!-- Google fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans"
+          rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Scope+One"
+          rel="stylesheet" type="text/css">
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+          rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet"/>
+    {% block add_css %}{% endblock add_css %}
+</head>
+<body>
+<!-- Masthead-->
+{% block masthead %}
+<header class="masthead h-100">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center">
+            <div class="col-lg-10 align-self-center">
+                {% block top_section %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock masthead %}
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'users_app:index' %}">
+            <img alt="Bisuit Pur Beurre"
+                 height="60px"
+                 src="{% static 'assets/img/logo_pur_beurre.png' %}"
+                 widht="60px">
+            Pur Beurre
+        </a>
+        <button aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right"
+                data-target="#navbarResponsive" data-toggle="collapse"
+                type="button"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <form action="{% url 'search_app:results' %}"
+                      method="POST">
+                    {% csrf_token %}
+
+                    {% render_field search_form.input_user class="form-control" %}
+                </form>
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link"
+                                        href="{% url 'favorites_app:favorites' %}">
+                    <img alt="Mes aliments"
+                         height="30px"
+                         src="{% static 'assets/img/carrot.png' %}"
+                         width="30px">
+                    Mes aliments
+                </a></li>
+                <li class="nav-item">
+
+                    <a class="nav-link" href="{% url 'users_app:account' %}"
+                       id="user">
+                        <img alt="Mon compte"
+                             height="30px"
+                             src="{% static 'assets/img/account.png' %}"
+                             width="30px">
+                        {{ user }}
+                    </a>
+                </li>
+                <li class="nav-item">
+
+                    <a class="nav-link" href="{% url 'users_app:logout' %}">
+                        <img alt="Se déconnecter"
+                             height="30px"
+                             src="{% static 'assets/img/disconnect.png' %}"
+                             width="30px">
+                        Déconnexion
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <img alt="S'inscrire"
+                         class="m-1"
+                         height="30px"
+                         src="{% static 'assets/img/account.png' %}"
+                         width="30px">
+                    <a class="nav-link d-inline p-0"
+                       href="{% url 'users_app:signup' %}">
+                        S'inscrire
+                    </a>
+                    /
+                    <a class="nav-link d-inline p-0" href="{% url 'users_app:login' %}"
+                       id="connect">
+                        Se connecter
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block content %}{% endblock content%}
+
+<footer class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center"><a class="a_footer" href="{% url 'users_app:credits' %}">Mentions
+                légales</a></div>
+            <div class="col text-center"><a class="a_footer"
+                                            href="">Contact</a></div>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<!-- Core theme JS-->
+<script src="{% static 'js/scripts.js' %}"></script>
+<!-- Bootstrap files -->
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

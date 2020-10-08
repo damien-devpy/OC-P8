@@ -9,3 +9,5 @@ omit =
     */admin.py
     */manage.py
     */models.py
+    */forms.py
+    */signals.py
