@@ -15,7 +15,6 @@ django = "*"
 django-widget-tweaks = "*"
 requests = "*"
 selenium = "*"
-gunicorn = "*"
 django-heroku = "*"
 
 [requires]
