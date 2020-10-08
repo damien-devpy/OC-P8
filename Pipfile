@@ -5,16 +5,18 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
+coverage = "*"
+pytest-django = "*"
+pytest-selenium = "*"
 
 [packages]
 psycopg2 = "*"
 django = "*"
-coverage = "*"
 django-widget-tweaks = "*"
-pytest-django = "*"
 requests = "*"
 selenium = "*"
-pytest-selenium = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.8"

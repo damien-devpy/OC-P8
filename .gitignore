@@ -7,3 +7,13 @@ __pycache__/
 
 # .env files
 *.env
+
+# Coverage
+*.coverage
+*.coveragerc
+
+# Pytest
+pytest.ini
+
+# Log
+*.log
