@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from products_app.models import Product, Category
-import pdb
+
 from .load_db.downloader import Downloader
 from .load_db.sort import Sort
 
@@ -14,11 +14,8 @@ class Command(BaseCommand):
         parser.add_argument('products', type=int)
 
     def handle(self, *args, **options):
-        if options['products'] < 1000:
-            options['products'] = 1000
 
         page = 1
-        product_count = 0
 
         while Product.objects.all().count() < options['products']:
             if Product.objects.all().count() == 0:
@@ -30,6 +27,11 @@ class Command(BaseCommand):
 
             data_sorted_out = Sort(data)
             self.stdout.write('Downloaded and sorted out 1000 products')
+
+            how_much_left_to_register = options['products'] - Product.objects.all().count()
+
+            if how_much_left_to_register < len(data_sorted_out.products):
+                data_sorted_out.products = data_sorted_out.products[:how_much_left_to_register]
 
             Product.objects.bulk_create([
                 Product(**product['informations'])
@@ -49,15 +51,12 @@ class Command(BaseCommand):
 
             for index, product in enumerate(data_sorted_out.products):
                 ProductCategoryRelationShip.objects.bulk_create([
-                    ProductCategoryRelationShip(product=registered_products.get(barre_code=product["informations"]["barre_code"]),
-                                                category=registered_categories.get(name=category),)
+                    ProductCategoryRelationShip(
+                        product=registered_products.get(
+                            barre_code=product["informations"]["barre_code"]),
+                        category=registered_categories.get(name=category), )
                     for category in product['categories']
                 ], ignore_conflicts=True)
-
-                if product["informations"]["name"] == 'Nutella':
-                    self.stdout.write(f'{product["informations"]["name"]}')
-                    self.stdout.write(f'{product["categories"]}')
-                    self.stdout.write(f'{[registered_categories.filter(name__exact=category)[0].name for category in product["categories"]]}')
 
             page += 1
 

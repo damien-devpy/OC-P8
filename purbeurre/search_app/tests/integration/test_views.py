@@ -1,9 +1,8 @@
-from django.test import TestCase
 from django.shortcuts import reverse
-from pytest import mark
-from search_app.views import ResultsView
+from django.test import TestCase
 from django.utils.encoding import smart_str
 from products_app.models import Product
+
 
 class TestPostSearch(TestCase):
 
@@ -19,7 +18,7 @@ class TestPostSearch(TestCase):
                                          glucid="value",
                                          fiber="value",
                                          protein="value",
-                                         salt="value",)
+                                         salt="value", )
 
     def test_post_return_results(self):
         url = reverse('search_app:results')

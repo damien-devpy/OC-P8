@@ -1,8 +1,9 @@
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
+
 from .forms import CustomUserCreationForm
 from .models import User
-import pdb
+
 
 def index(request):
     context = {}

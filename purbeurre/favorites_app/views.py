@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
+
 class Favorites(View):
     """View managing favorites user.
 
@@ -16,7 +17,8 @@ class Favorites(View):
                 {'products': request.user.favorites.all()}
             )
 
-        return render(request, 'favorites_app/favorites.html', {'result': result})
+        return render(request, 'favorites_app/favorites.html',
+                      {'result': result})
 
     def post(self, request):
         result = {}
@@ -26,6 +28,5 @@ class Favorites(View):
             result.update({'products': request.user.favorites.all()},
                           )
 
-        return render(request, 'favorites_app/favorites.html', {'result': result})
-
-
+        return render(request, 'favorites_app/favorites.html',
+                      {'result': result})

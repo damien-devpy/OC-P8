@@ -13,6 +13,8 @@ coverage = "*"
 django-widget-tweaks = "*"
 pytest-django = "*"
 requests = "*"
+selenium = "*"
+pytest-selenium = "*"
 
 [requires]
 python_version = "3.8"

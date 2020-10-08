@@ -2,39 +2,41 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block add_css %}
-    <link href="{% static 'css/auth_form.css' %}" rel="stylesheet"/>
+<link href="{% static 'css/auth_form.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 
 {% block top_section %}
-<form method="post" class="form-group auth-form p-3" novalidate>
+<form class="form-group auth-form p-3" method="post" novalidate>
     <p class="text-center font-weight-bold">S'inscrire</p>
     {% csrf_token %}
     <div class="container">
         {% for field in form %}
-            <div class="row justify-content-center m-2">
-                <div class="col">
+        <div class="row justify-content-center m-2">
+            <div class="col">
                 {{ field.label_tag }}
                 {% render_field field class="form-control" %}
                 {% if field.errors %}
-                    {% for error in field.errors %}
-                        <div class="badge badge-info text-wrap">
-                        {{ error }}
-                        </div>
-                    {% endfor %}
+                {% for error in field.errors %}
+                <div class="badge badge-info text-wrap">
+                    {{ error }}
+                </div>
+                {% endfor %}
                 {% endif %}
                 <small class="form-text">
-                {{ field.help_text|safe}}
+                    {{ field.help_text|safe}}
                 </small>
-                </div>
             </div>
+        </div>
 
 
         {% endfor %}
-    <br>
+        <br>
         <div class="row justify-content-center">
             <div class="col-6">
-               <button type="submit" class="form-control btn btn-mussel">Inscription</button>
+                <button class="form-control btn btn-mussel" type="submit">
+                    Inscription
+                </button>
             </div>
         </div>
     </div>

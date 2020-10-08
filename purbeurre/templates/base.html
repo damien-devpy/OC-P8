@@ -79,7 +79,7 @@
                 </a></li>
                 <li class="nav-item">
 
-                    <a class="nav-link" href="{% url 'users_app:account' %}">
+                    <a id="user" class="nav-link" href="{% url 'users_app:account' %}">
                         <img alt="Mon compte"
                              height="30px"
                              src="{% static 'assets/img/account.png' %}"
@@ -100,15 +100,15 @@
                 {% else %}
                 <li class="nav-item">
                     <img alt="S'inscrire"
+                         class="m-1"
                          height="30px"
-                         src="{% static 'assets/img/account.png' %}"
-                         width="30px" class="m-1">
+                         src="{% static 'assets/img/account.png' %}" width="30px">
                     <a class="nav-link d-inline p-0"
                        href="{% url 'users_app:signup' %}">
                         S'inscrire
                     </a>
                     /
-                    <a class="nav-link d-inline p-0"
+                    <a id="connect" class="nav-link d-inline p-0"
                        href="{% url 'users_app:login' %}">
                         Se connecter
                     </a>

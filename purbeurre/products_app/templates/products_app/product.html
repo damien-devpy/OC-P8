@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block add_css %}
-    <link href="{% static 'css/product.css' %}" rel="stylesheet"/>
-    <link href="{% static 'css/nutriscore.css' %}" rel="stylesheet"/>
+<link href="{% static 'css/product.css' %}" rel="stylesheet"/>
+<link href="{% static 'css/nutriscore.css' %}" rel="stylesheet"/>
 {% endblock add_css %}
 
 {% block masthead %}{% endblock %}
@@ -10,8 +10,9 @@
 {% block content %}
 <div class="container-fluid min-vh-100 p-0">
 
-{% if product %}
-    <div class="container-fluid cover-product" style="background-image: url({{ product.pict_product }});">
+    {% if product %}
+    <div class="container-fluid cover-product"
+         style="background-image: url({{ product.pict_product }});">
         <div class="row justify-content-center align-items-end h-100">
             <div class="col-10 text-center pb-1">
                 <h3>{{ product.name }}</h3>
@@ -22,89 +23,98 @@
 
     <div class="container-fluid mt-5">
         <div class="row justify-content-around">
-            <div class="col-sm position-relative" align="center" style="border: 1px solid blue;">
-                <img src="{{ product.pict_product }}" class="pict-product">
-                <div class="block-nutriscore" style="border: 1px solid red;">
-                {% include './includes/nutriscore.html' %}
-                {% if product in user.favorites.all %}
+            <div align="center" class="col-sm position-relative"    >
+                <img class="pict-product" src="{{ product.pict_product }}">
+                <div class="block-nutriscore">
+                    {% include './includes/nutriscore.html' %}
+                    {% if product in user.favorites.all %}
                     <div class="d-flex pt-2">
-                        <input name="product_substitute" type="hidden" value="{{ product.id }}">
-                        <img src="{% static 'assets/img/already_favorite.png' %}" class="favorite align-self-start">
+                        <input name="product_substitute" type="hidden"
+                               value="{{ product.id }}">
+                        <img class="favorite align-self-start"
+                             src="{% static 'assets/img/already_favorite.png' %}">
                         Produit favori <3
                     </div>
-                {% else %}
+                    {% else %}
                     <div class="d-flex pt-2">
-                    <form method="POST" action="{% url 'favorites_app:favorites' %}">
-                        {% csrf_token %}
-                        <input name="product_substitute" type="hidden" value="{{ product.id }}">
-                        <input type="image" src="{% static 'assets/img/favorite.png' %}" class="favorite align-self-start">
-                        Enregistrer à mes favoris
-                    </form>
+                        <form action="{% url 'favorites_app:favorites' %}"
+                              method="POST">
+                            {% csrf_token %}
+                            <input name="product_substitute" type="hidden"
+                                   value="{{ product.id }}">
+                            <input class="favorite align-self-start"
+                                   src="{% static 'assets/img/favorite.png' %}"
+                                   type="image">
+                            Enregistrer à mes favoris
+                        </form>
                     </div>
-                {% endif %}
+                    {% endif %}
                 </div>
             </div>
             <div class="col-sm mt-5 pt-5 mt-lg-0 pt-lg-0">
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">
-                               Informations nutritionnelles
-                            </th>
-                            <th scope="col">
-                                Pour 100 gr
-                            </th>
-                        </tr>
+                    <tr>
+                        <th scope="col">
+                            Informations nutritionnelles
+                        </th>
+                        <th scope="col">
+                            Pour 100 gr
+                        </th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">
-                                Energie (kj)
-                            </th>
-                            <td>{{ product.energy_kj }}</td>
-                        </tr>
-                            <th scope="row">
-                                Energie (kcal)
-                            </th>
-                            <td>{{ product.energy_kcal }}</td>
-                        </tr>
-                            <th scope="row">
-                                Lipides
-                            </th>
-                            <td>{{ product.lipid }} g</td>
-                        </tr>
-                            <th scope="row">
-                                Glucides
-                            </th>
-                            <td>{{ product.glucid }} g</td>
-                        </tr>
-                            <th scope="row">
-                                Protéines
-                            </th>
-                            <td>{{ product.protein }} g</td>
-                        </tr>
-                            <th scope="row">
-                                Fibres
-                            </th>
-                            <td>{{ product.fiber }} g</td>
-                        </tr>
-                            <th scope="row">
-                                Sel
-                            </th>
-                            <td>{{ product.salt }} g</td>
-                        </tr>
+                    <tr>
+                        <th scope="row">
+                            Energie (kj)
+                        </th>
+                        <td>{{ product.energy_kj }}</td>
+                    </tr>
+                    <th scope="row">
+                        Energie (kcal)
+                    </th>
+                    <td>{{ product.energy_kcal }}</td>
+                    </tr>
+                    <th scope="row">
+                        Lipides
+                    </th>
+                    <td>{{ product.lipid }} g</td>
+                    </tr>
+                    <th scope="row">
+                        Glucides
+                    </th>
+                    <td>{{ product.glucid }} g</td>
+                    </tr>
+                    <th scope="row">
+                        Protéines
+                    </th>
+                    <td>{{ product.protein }} g</td>
+                    </tr>
+                    <th scope="row">
+                        Fibres
+                    </th>
+                    <td>{{ product.fiber }} g</td>
+                    </tr>
+                    <th scope="row">
+                        Sel
+                    </th>
+                    <td>{{ product.salt }} g</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="row justify-content-center my-3 py-3 p-lg-5 m-lg-5">
-            <div class="col align-self-center" align="center">
-                <button class="btn btn-mussel"><a href="https://fr.openfoodfacts.org/produit/{{ product.barre_code }}">Voir la fiche OpenFoodFacts de ce produit</a></button>
+            <div align="center" class="col align-self-center">
+                <button class="btn btn-mussel"><a
+                        href="https://fr.openfoodfacts.org/produit/{{ product.barre_code }}">Voir
+                    la fiche OpenFoodFacts de ce produit</a></button>
             </div>
         </div>
     </div>
-{% else %}
-    <div class="container-fluid cover-product" style="background-image: url({{ product.pict_product }});">
+    {% else %}
+    <div class="container-fluid cover-product"
+         style="background-image: url({{ product.pict_product }});">
         <div class="row justify-content-center align-items-end h-100">
             <div class="col-10 text-center pb-1">
                 <h3>Ce produit n'existe pas.</h3>
@@ -112,7 +122,7 @@
             </div>
         </div>
     </div>
-{% endif %}
+    {% endif %}
 
 </div>
 {% endblock %}

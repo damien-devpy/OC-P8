@@ -2,45 +2,50 @@
 
 {% if user.is_authenticated %}
 
-    {% block search_product %}Mes aliments{% endblock %}
+{% block search_product %}Mes aliments{% endblock %}
 
-    {% if user.favorites.all %}
+{% if user.favorites.all %}
 
-        {% block add_link_product %}
-            {% url 'products_app:product' product_id=product.id %}
-        {% endblock %}
+{% block add_link_product %}
+{% url 'products_app:product' product_id=product.id %}
+{% endblock %}
 
-    {% else %}
-    {% block warning_message %}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-10">
-            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+{% else %}
+{% block warning_message %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="alert alert-warning alert-dismissible fade show text-center"
+                 role="alert">
                 Vous n'avez enregistré aucun produits.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
+                <button aria-label="Fermer" class="close" data-dismiss="alert"
+                        type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
 
-    {% endif %}
+{% endif %}
 
 {% else %}
 {% block top_section %}
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-10">
-            <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">Vous n'êtes pas connecté. <br>Vous ne pouvez ni consulter vos aliments favoris, ni en enregisrer d'autres.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Fermer">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="alert alert-warning alert-dismissible fade show text-center"
+                 role="alert">Vous n'êtes pas connecté. <br>Vous ne pouvez ni
+                consulter vos aliments favoris, ni en enregisrer d'autres.
+                <button aria-label="Fermer" class="close" data-dismiss="alert"
+                        type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 {% endif %}
 
