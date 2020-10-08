@@ -16,6 +16,7 @@ django-widget-tweaks = "*"
 requests = "*"
 selenium = "*"
 django-heroku = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
