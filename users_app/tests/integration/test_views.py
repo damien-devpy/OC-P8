@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from users_app.models import User
+
 
 class SignUpSuccessfully(TestCase):
 
@@ -15,10 +15,6 @@ class SignUpSuccessfully(TestCase):
 
     def test_user_has_been_redirect_to_index(self):
         self.assertRedirects(self.response, reverse('users_app:index'))
-
-    def test_user_has_been_created(self):
-        new_user = User.objects.get(email='new_user@gmail.com')
-        self.assertTrue(new_user)
 
     def test_user_is_authenticated(self):
         response = self.client.get(reverse('users_app:index'))

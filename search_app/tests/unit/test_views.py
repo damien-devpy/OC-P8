@@ -1,8 +1,6 @@
 from django.shortcuts import reverse
 from django.test import TestCase
 from django.utils.encoding import smart_str
-from pytest import mark
-from search_app.views import ResultsView
 
 
 class TestPostSearch(TestCase):
@@ -21,25 +19,3 @@ class TestPostSearch(TestCase):
 
         assert "Votre recherche n'a retourné aucun résultats" in smart_str(
             response.content)
-
-
-input_and_expect_return = [
-    ('Compote de pommes.',
-     'compote pommes',
-     ),
-    ('Pot de nutella',
-     'pot nutella',
-     ),
-    ('Confiture aux pruneaux',
-     'confiture pruneaux',
-     ),
-    ('Sauce au pesto',
-     'sauce pesto',
-     ),
-]
-
-
-@mark.parametrize("input, expected", input_and_expect_return)
-def test_parse_method_remove_stop_word_and_special_char(input, expected):
-    search_result = ResultsView()
-    assert search_result._parse_input_user(input) == expected

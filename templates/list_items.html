@@ -15,7 +15,7 @@
         <div class="row justify-content-center align-items-end h-100">
             <div class="col-10 text-center pb-1">
                 <h3>{% block search_product %}
-                        "{{ result.input_user }}"
+                    "{{ result.input_user }}"
                     {% endblock search_product %}</h3>
                 <hr style="width: 200px;">
             </div>
@@ -59,8 +59,8 @@
 
         {% endfor %}
         {% if results.products|length|divisibleby:"3" %}
-        </div>
-        {% endif %}
+    </div>
+    {% endif %}
 
     {% else %}
 

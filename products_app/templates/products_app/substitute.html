@@ -30,9 +30,10 @@
         {% csrf_token %}
         <input name="product_substitute" type="hidden"
                value="{{ product.id }}">
-        <input class="favorite align-self-start" src="{% static 'assets/img/favorite.png' %}"
+        <input class="favorite align-self-start"
+               src="{% static 'assets/img/favorite.png' %}"
                type="image">
-        Enregistrer à mes favoris
+        Ajouter à mes favoris
     </form>
 </div>
 {% endif %}

@@ -64,9 +64,10 @@
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <form action="{% url 'search_app:results' %}"
                       method="POST">
-                {% csrf_token %}
+                    {% csrf_token %}
 
-                {% render_field search_form.input_user class="form-control" %}
+                    {% render_field search_form.input_user class="form-control"
+                    %}
                 </form>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link"
@@ -79,7 +80,8 @@
                 </a></li>
                 <li class="nav-item">
 
-                    <a id="user" class="nav-link" href="{% url 'users_app:account' %}">
+                    <a class="nav-link" href="{% url 'users_app:account' %}"
+                       id="user">
                         <img alt="Mon compte"
                              height="30px"
                              src="{% static 'assets/img/account.png' %}"
@@ -102,14 +104,15 @@
                     <img alt="S'inscrire"
                          class="m-1"
                          height="30px"
-                         src="{% static 'assets/img/account.png' %}" width="30px">
+                         src="{% static 'assets/img/account.png' %}"
+                         width="30px">
                     <a class="nav-link d-inline p-0"
                        href="{% url 'users_app:signup' %}">
                         S'inscrire
                     </a>
                     /
-                    <a id="connect" class="nav-link d-inline p-0"
-                       href="{% url 'users_app:login' %}">
+                    <a class="nav-link d-inline p-0" href="{% url 'users_app:login' %}"
+                       id="connect">
                         Se connecter
                     </a>
                 </li>

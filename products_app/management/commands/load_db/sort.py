@@ -54,7 +54,7 @@ class Sort:
                 # Switching for more convienient keywords
                 nutriments = {key: product.get('nutriments').get(value)
                 if product.get('nutriments').get(
-                    value) != None else 'Valeur inconnue'
+                    value) is not None else 'Valeur inconnue'
                               for key, value in FIELDS_NUTRIMENTS.items()
                               }
 

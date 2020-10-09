@@ -28,10 +28,12 @@ class Command(BaseCommand):
             data_sorted_out = Sort(data)
             self.stdout.write('Downloaded and sorted out 1000 products')
 
-            how_much_left_to_register = options['products'] - Product.objects.all().count()
+            how_much_left_to_register = options[
+                                            'products'] - Product.objects.all().count()
 
             if how_much_left_to_register < len(data_sorted_out.products):
-                data_sorted_out.products = data_sorted_out.products[:how_much_left_to_register]
+                data_sorted_out.products = data_sorted_out.products[
+                                           :how_much_left_to_register]
 
             Product.objects.bulk_create([
                 Product(**product['informations'])

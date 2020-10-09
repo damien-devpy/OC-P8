@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from os import environ
 from pathlib import Path
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.1.12", "127.0.0.1", "localhost", "testserver"]
 
 # Application definition
 
@@ -87,7 +86,6 @@ DATABASES = {
         'PASSWORD': environ.get("DATABASE_PASSWORD"),
         'HOST': '127.0.0.1',
         'PORT': '5432',
-        'CONN_MAX_AGE': 500,
     }
 }
 
@@ -138,5 +136,3 @@ AUTH_USER_MODEL = 'users_app.User'
 AUTHENTICATION_BACKENDS = ['users_app.custombackend.CustomBackEnd']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-
-django_heroku.settings(locals())
