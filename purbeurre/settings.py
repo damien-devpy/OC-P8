@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from os import environ
 from pathlib import Path
+import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["192.168.1.12", "127.0.0.1", "localhost", "testserver"]
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -79,14 +81,9 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'purbeurre_db',
-        'USER': 'purbeurre_db_admin',
-        'PASSWORD': environ.get("DATABASE_PASSWORD"),
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 # Password validation
@@ -120,14 +117,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
-
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
 # Overriding default user model
 AUTH_USER_MODEL = 'users_app.User'
@@ -136,3 +136,5 @@ AUTH_USER_MODEL = 'users_app.User'
 AUTHENTICATION_BACKENDS = ['users_app.custombackend.CustomBackEnd']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+django_heroku.settings(locals())
