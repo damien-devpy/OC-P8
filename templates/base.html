@@ -66,8 +66,7 @@
                       method="POST">
                     {% csrf_token %}
 
-                    {% render_field search_form.input_user class="form-control"
-                    %}
+                    {% render_field search_form.input_user class="form-control" %}
                 </form>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link"
