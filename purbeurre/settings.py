@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=environ.get('DATABASE_URL')
     )
 }
 
