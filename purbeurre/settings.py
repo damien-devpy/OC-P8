@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from os import environ
 from pathlib import Path
-import dj_database_url
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,9 +79,15 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'purbeurre_db',
+        'USER': 'purbeurre_db_admin',
+        'PASSWORD': environ.get("DATABASE_PASSWORD"),
+        'HOST': 'localhost,
+        'PORT': '5432',
+        'CONN_MAX_AGE': 500,
+    }
 }
 
 # Password validation
@@ -133,5 +137,3 @@ AUTH_USER_MODEL = 'users_app.User'
 AUTHENTICATION_BACKENDS = ['users_app.custombackend.CustomBackEnd']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-
-django_heroku.settings(locals())
