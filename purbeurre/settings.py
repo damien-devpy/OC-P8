@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'purbeurre_db',
         'USER': 'purbeurre_db_admin',
         'PASSWORD': environ.get("DATABASE_PASSWORD"),
-        'HOST': 'localhost,
+        'HOST': 'localhost',
         'PORT': '5432',
         'CONN_MAX_AGE': 500,
     }
