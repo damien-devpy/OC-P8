@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block masthead %}
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-start justify-content-center">
+            <div class="col-lg-10 align-self-center d-flex flex-column align-items-center p-1 bg-white rounded">
+                <div>
+                <img class="m-1 img-thumbnail" src="{% static 'assets/img/account.png' %}" width="50px" height="50px" alt="My account">
+                <span class="text-uppercase font-weight-bold">by Rahmat Hidayat from the Noun Project</span>
+                </div>
+                <div>
+                <img class="m-1 img-thumbnail" src="{% static 'assets/img/carrot.png' %}" width="50px" height="50px"  alt="Carrot">
+                <span class="text-uppercase font-weight-bold">by Fabien Jouin from the Noun Project</span>
+                </div>
+                <div>
+                <img class="m-1 img-thumbnail" src="{% static 'assets/img/disconnect.png' %}" width="50px" height="50px"  alt="Disconnect">
+                <span class="text-uppercase font-weight-bold">by rayhan maulana rikzan from the Noun Project</span>
+                </div>
+                <div>
+                <img class="m-1 img-thumbnail" src="{% static 'assets/img/phone.png' %}" width="50px" height="50px"  alt="Phone">
+                <span class="text-uppercase font-weight-bold">by Joris Hoogendoorn from the Noun Project</span>
+                </div>
+                <div>
+                <img class="m-1 img-thumbnail" src="{% static 'assets/img/mail.png' %}" width="50px" height="50px"  alt="Mail">
+                <span class="text-uppercase font-weight-bold">by iconpacks from the Noun Project</span>
+                </div>
+                <div>
+                <img class="m-1 img-thumbnail" src="{% static 'assets/img/favorite.png' %}" width="50px" height="50px"  alt="Favorites">
+                <span class="text-uppercase font-weight-bold">by Arif Ismail from the Noun Project</span>
+                </div>
+                <div>
+                <a href="https://startbootstrap.com/themes/creative/">Template Bootstrap Creative</a>
+                </div>
+                <div>
+                <a href="https://www.heroku.com/">Hébergé par Heroku</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock masthead %}

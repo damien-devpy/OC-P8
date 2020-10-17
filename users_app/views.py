@@ -34,3 +34,6 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'users_app/signup.html', {'form': form})
+
+def credits(request):
+    return render(request, 'users_app/credits.html')
