@@ -10,8 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from os import environ
 from pathlib import Path
+
+import dj_database_url
+import django_heroku
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environ.get("SECRET_KEY")
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -79,15 +82,8 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'purbeurre_db',
-        'USER': 'purbeurre_db_admin',
-        'PASSWORD': environ.get("DATABASE_PASSWORD"),
-        'HOST': 'localhost',
-        'PORT': '5432',
-        'CONN_MAX_AGE': 500,
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'))
 }
 
 # Password validation
@@ -137,3 +133,5 @@ AUTH_USER_MODEL = 'users_app.User'
 AUTHENTICATION_BACKENDS = ['users_app.custombackend.CustomBackEnd']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+django_heroku.settings(locals())
