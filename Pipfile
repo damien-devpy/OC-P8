@@ -19,7 +19,6 @@ gunicorn = "*"
 dj-database-url = "*"
 psycopg2 = "*"
 psycopg2-binary = "*"
-python-decouple = "*"
 
 [requires]
 python_version = "3.8"
