@@ -7,12 +7,7 @@ from .models import User
 
 
 def index(request):
-    context = {}
-    if request.session.get('just_signed_up'):
-        context.update({'just_signed_up': True})
-        request.session['just_signed_up'] = False
-
-    return render(request, 'users_app/index.html', context)
+    return render(request, 'users_app/index.html')
 
 
 def account(request):
