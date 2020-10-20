@@ -1,14 +1,14 @@
 # OC-P8
 ### OpenClassrooms - My 8th project for OC PythonPath
 
-#### Introduction
+### Introduction
 
 Python/Django Web application allowing to substitute safer food products from existing one.
 PostgreSQL is used. Data come from OpenFoodFacts API.
 
-#### Local setup
+### Local setup
 
-##### Setup code
+#### Setup code
 
 Create a directory, for example
 
@@ -24,7 +24,7 @@ git clone https://github.com/damien-devpy/OC-P8
 cd purbeurre
 ```
 
-##### Setup virtual environment 
+#### Setup virtual environment 
 
 ```
 pipenv shell
@@ -42,7 +42,7 @@ Contributing
 pipenv install --dev
 ```
 
-##### Tests
+#### Tests
 
 Running tests
 
@@ -59,7 +59,7 @@ coverage report -m
 
 ```
 
-##### Launching local server 
+#### Launching local server 
 
 Simply run :
 

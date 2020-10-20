@@ -1,6 +1,7 @@
 from django.shortcuts import reverse
 from django.test import TestCase
 from django.utils.encoding import smart_str
+
 from products_app.models import Product
 
 

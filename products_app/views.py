@@ -1,5 +1,6 @@
 from django.db.models import Count
 from django.shortcuts import render
+
 from products_app.models import Product
 
 

@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
+
 from users_app.forms import CustomUserCreationForm
 from users_app.views import index, signup
 
