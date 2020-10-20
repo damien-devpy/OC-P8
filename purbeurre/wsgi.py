@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'purbeurre.settings')
+env = os.environ.get('ENV')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', f'purbeurre.settings.{env}')
 
 application = get_wsgi_application()
