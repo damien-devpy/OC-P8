@@ -13,3 +13,6 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': 'Mot de passe',
             'password2': 'Confirmez votre mot de passe',
         }
+
+    def clean_email(self):
+        return self.cleaned_data['email'].lower()

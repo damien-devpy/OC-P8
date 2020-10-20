@@ -7,24 +7,16 @@
 
 {% block top_section %}
 <div class="d-flex justify-content-center">
-    {% if just_signed_up %}
-    <span class="alert alert-success alert-dismissible fade show">
-        Bienvenue, {{ user }}
-        <button aria-label="Fermer" class="close" data-dismiss="alert"
-                type="button">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </span>
-    {% elif messages %}
-    {% for message in messages %}
-    <span class="alert alert-success alert-dismissible fade show">
-            {{ message }}
-            <button aria-label="Fermer" class="close" data-dismiss="alert"
-                    type="button">
-            <span aria-hidden="true">&times;</span>
-            </button>
+    {% if messages %}
+        {% for message in messages %}
+        <span class="alert alert-success alert-dismissible fade show">
+                {{ message }}
+                <button aria-label="Fermer" class="close" data-dismiss="alert"
+                        type="button">
+                <span aria-hidden="true">&times;</span>
+                </button>
         </span>
-    {% endfor %}
+        {% endfor %}
     {% endif %}
 </div>
 <h1 class="text-uppercase text-white font-weight-bold text-center">

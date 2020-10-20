@@ -1,4 +1,5 @@
 from django.contrib.auth import login
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from .forms import CustomUserCreationForm
@@ -21,15 +22,11 @@ def account(request):
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
-        try:
-            mail_exist = User.objects.get(email=request.POST['email'].lower())
-        except User.DoesNotExist:
-            mail_exist = None
 
-        if form.is_valid() and not mail_exist:
+        if form.is_valid():
             user = form.save()
             login(request, user)
-            request.session['just_signed_up'] = True
+            messages.add_message(request, messages.SUCCESS, 'Vous êtes inscrit avec succès.')
             return redirect('users_app:index')
     else:
         form = CustomUserCreationForm()
