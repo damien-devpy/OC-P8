@@ -1,6 +1,8 @@
 from .base import *
 from os import environ
 
+ALLOWED_HOSTS += ['localhost',]
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -17,3 +19,9 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+STATIC_ROOT = BASE_DIR / 'production_staticfiles/'
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
