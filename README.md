@@ -6,6 +6,8 @@
 Python/Django Web application allowing to substitute safer food products from existing one.
 PostgreSQL is used. Data come from OpenFoodFacts API.
 
+[http://purbeurre-paris.herokuapp.com/](http://purbeurre-paris.herokuapp.com/ "Pur beurre") 
+
 ### Local setup
 
 #### Setup code
